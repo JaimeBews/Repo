@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<head>
+  <script language="javascript" type="text/javascript" src="Animate.js"></script>
+  <script language="javascript" type="text/javascript" src="Player.js"></script>
+  <script language="javascript" type="text/javascript" src="Controller.js"></script>
+  <script language="javascript" type="text/javascript" src="Collision.js"></script>
+  <script language="javascript" type="text/javascript" src="Object.js"></script>
+  <script language="javascript" type="text/javascript" src="Tutorial.js"></script>
+  <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
+   <script language="javascript" type="text/javascript" src="Enemy.js"></script>
+</head>
+<body onkeydown="keyDown(event)" onkeyup ="keyUp(event)">
+	<canvas id="screen" width=800 height = 640></canvas>
+	<script>
+		var display = document.getElementById("screen");
+		var ctx = display.getContext('2d');		
+				
+		var VelY=0;
+		var E_VelY=0
+		var playerSpeed=8;
+		var gravity = 0.5;
+		var lives=3;
+		var attacking = false;
+		var ground = new Array();
+		
+		var hasnotbeenhit=true;
+		var GameOver = new Object("images/gameover.png",0,0,800,640);
+		var gameover = false;
+		var mainmenu= true;
+		var Menu= new Object("images/Mainmenu.png",0,0,800,640);
+		var WASD= new Object("images/wasd.png",300,220,150,100);
+		var counter =0;
+		var currentlevel=0;
+		var emerald = new Object("images/background.png", 0, 0, 2700, 640);
+		var test = new Object("images/sprite.png", 500, 372, 100, 100);
+		
+		var enemy = new Object("images/test.png", 8000, 372, 50, 50);
+		var spikes = new Array();
+		for(i=0;i<5;i++){
+			spikes[i] = new Object("images/spike.png",3100+i*75,490,50,50);
+		}
+		var endDoor = new Object("images/enddoor.png", 8000, 2372, 50, 50);
+		var fakeGround = new Array();
+		for(i=0;i<1;i++){
+			fakeGround[i] = new Object("images/grass_tile.png",-1000,372,100,100);
+		}
+		
+		var Health = new Array();
+		for(i=0;i<lives;i++){
+			Health[i] = new Object("images/heart.png", 50*i, 0, 50, 50);
+		}
+		function MainMenu(){
+			if(G)
+				mainmenu=false;
+				tutorial();
+		}
+					
+		tutorial();
+	
+		function render(){
+		if(mainmenu){	
+			ctx.drawImage(Menu.Sprite, Menu.X, Menu.Y, Menu.W, Menu.H);
+			}
+			else if(gameover){
+				ctx.drawImage(GameOver.Sprite, GameOver.X, GameOver.Y, GameOver.W, GameOver.H);
+			
+			}else{
+				ctx.clearRect(0,0,display.width, display.height);	
+				ctx.drawImage(emerald.Sprite, emerald.X, emerald.Y, emerald.W, emerald.H);
+				for(i=0;i<lives;i++){
+					ctx.drawImage(Health[i].Sprite, Health[i].X, Health[i].Y, Health[i].W, Health[i].H);
+				}
+				ctx.drawImage(emerald.Sprite, emerald.X+2700, emerald.Y, emerald.W, emerald.H);
+				if(emerald.X <=-2700){
+					emerald.X = 0;
+					ctx.drawImage(emerald.Sprite, emerald.X, emerald.Y, emerald.W, emerald.H);
+				}
+				ctx.drawImage(WASD.Sprite, WASD.X, WASD.Y, WASD.W, WASD.H);
+				ctx.drawImage(endDoor.Sprite, endDoor.X, endDoor.Y, endDoor.W, endDoor.H);
+				for(i=0; i<fakeGround.length; i++){	
+					ctx.drawImage(fakeGround[i].Sprite, fakeGround[i].X, fakeGround[i].Y,fakeGround[i].W,fakeGround[i].H);			
+				}
+				for(i=0; i<spikes.length; i++){	
+					ctx.drawImage(spikes[i].Sprite, spikes[i].X, spikes[i].Y,spikes[i].W,spikes[i].H);			
+				}
+				ctx.drawImage(test.Sprite,animRow,animCol,animWidth,animHeight, test.X, test.Y, test.W, test.H);
+				ctx.drawImage(enemy.Sprite, enemy.X, enemy.Y, enemy.W, enemy.H);
+			//	ctx.drawImage(powerUp.Sprite,animRow,animCol,powerUp.W,powerUp.H, powerUp.X, powerUp.Y, powerUp.W, powerUp.H);
+				
+				
+					
+				for(i=0; i<ground.length; i++){	
+					ctx.drawImage(ground[i].Sprite, ground[i].X, ground[i].Y,ground[i].W,ground[i].H);			
+				}
+				for(i=0; i<platform.length; i++){	
+					ctx.drawImage(platform[i].Sprite, platform[i].X, platform[i].Y,platform[i].W+15,platform[i].H);			
+				}
+				for(i=0; i<platformX.length; i++){	
+					ctx.drawImage(platformX[i].Sprite, platformX[i].X, platformX[i].Y,platformX[i].W+15,platformX[i].H);			
+				}
+			}
+		}
+		
+		
+		function Main(){
+		if(mainmenu){
+			render();
+			setTimeout(Main,1000/60);
+			MainMenu();
+			}else{
+				player();
+				Enemy();
+				Animate();		
+				platFormX();
+				platformY();
+				render();
+				setTimeout(Main,1000/60);
+			}
+		}
+		Main();
+	</script>
+</body>
