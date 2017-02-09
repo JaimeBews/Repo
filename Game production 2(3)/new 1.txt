@@ -1,0 +1,20 @@
+walls that you can jump off and slide down(hard)
+
+things that fall from cieling ( medium) done
+
+looping platform go up and down (easy)
+
+Breakable blocks (easy)   done
+
+ice blocks with ice physics (hard) done 
+
+Health restore
+
+
+Always calling test.X +=speed
+speed += acceleration 
+if speed> 8
+	speed =8
+	
+if moving left 
+	acceleration -=.1

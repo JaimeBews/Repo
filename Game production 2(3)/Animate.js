@@ -2,9 +2,9 @@ var delayR = 0;
 var delayL= 0;
 var delay=0;
 var animRow = 0;
-var animCol = 0;
-var animHeight=0;
-var animWidth=0;
+var animCol = 75;
+var animHeight=75;
+var animWidth=50;
 var recently_Attacked = false;
 function Animate(){ //needs a if(D&&A)
 	if(D&&onground&&!attacking){

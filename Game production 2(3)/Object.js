@@ -30,12 +30,20 @@ function Object(img, x, y, w, h)
 				return true;
 			}
 			
-			this.isColl = function(obj)
+			this.isCollBot = function(obj)
 			{
 				if (obj.X > this.X + this.W-8) return false;
 				if (obj.X + obj.W < this.X+8)return false;
 				if (obj.Y > this.Y + this.H)return false;
 				if (obj.Y + obj.H < this.Y+this.H-5)return false;
+				return true;
+			}
+			this.isColl = function(obj)
+			{
+				if (obj.X > this.X + this.W) return false;
+				if (obj.X + obj.W < this.X)return false;
+				if (obj.Y > this.Y + this.H)return false;
+				if (obj.Y + obj.H < this.Y)return false;
 				return true;
 			}
 			

@@ -20,13 +20,37 @@ function Enemy(){
 		enemy.X-=E_Speed;
 	
 	for(i=0;i<spikes.length;i++){
-		if(test.isColl(spikes[i]))
+		if(test.isCollBot(spikes[i]))
 			gameover=true;
 	}
+	if (test.isColl(enemy)&&hasnotbeenhit&&!attacking){
+	wasHit();
+	}
+	function wasHit(){
+		lives-=1;
+		hasnotbeenhit = false;
+		setTimeout(resetHit,1500)
+	}
+	function resetHit(){
+		hasnotbeenhit=true;
+	}
+	for(i=0;i<fallingSpikes.length;i++){
+		if (test.isUnder(fallingSpikes[i])){
+			fallingSpikes[i].falling = true;
+		}
+		if (fallingSpikes[i].falling ==true){
+			fallingSpikes[i].Y+=8;
+		}
+		if(test.isColl(fallingSpikes[i])&&hasnotbeenhit){//Need to make isColl correctly so it tests the whole object again
+			wasHit();
+
+		}
+	}
+	
 }
 function E_Collision(){
 	for(i=0;i<ground.length; i++){
-		if(enemy.isColl(ground[i])){	
+		if(enemy.isCollBot(ground[i])){	
 			enemy.Y=ground[i].Y-enemy.H;
 			E_onground = true;
 		}

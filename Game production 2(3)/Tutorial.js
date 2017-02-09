@@ -1,20 +1,38 @@
 	
 	function tutorial(){
+		test.X=500
+		test.Y=0
 		enemy.X=8000;
 		enemy.Y=500;
-		endDoor.X=8000;
+		endDoor.X=8300;
 		endDoor.Y= -2372;
-		for (i=0; i<250; i++ )//initial terrain non function based yet currentLevel()?
-		{
+		for (i=0; i<250; i++ ){
 			ground[i] = new Object ("images/grass_tile.png", 100*i, display.height -100,100,100);
 		}
 		for(i=0; i<5; i++){
 			platform[i] = new Object ("images/platform.png");
-		 }
+		}
 		for(i=0; i<3; i++){
 			platformX[i] = new Object ("images/platform.png",3050,420,64,32);
-		 }
-		 
+		}
+		for(i=0;i<5;i++){
+			spikes[i] = new Object("images/spike.png",3100+i*75,490,50,50);
+		}
+		for (i=0; i<50; i++ ){
+			fallAwayBlock[i] = new Object ("images/grass_tile.png", 500+150*i, display.height -350,100,100);
+		}
+		for (i=0; i<4; i++ ){
+			iceBlock[i] = new Object ("images/grass_tile.png", 800+100*i, display.height- 300,100,100);
+		}
+	ground[220].Y=500;
+	var indexj = 0;
+	/*for(j=220;j<250;j++){
+		
+		ground[j].X = 500+indexj*10;
+		ground[j].Y = 500-indexj*14;
+		indexj++;
+	}
+	*/		 
 		 platform[4].X = 2120;
 		 platform[4].Y = 450;
 		 platform[4].W =32;
