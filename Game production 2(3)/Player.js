@@ -5,10 +5,11 @@ var onground = false;
 var onIce = false;
 var flagRight= true;
 var flagLeft= true;
+var IceSpeed=2;
 function player(){
-	
+
 	test.isCollRight= function(obj){
-				if (obj.X > this.X + this.W-35) return false;//objects left is further right than this's right side
+				if (obj.X > this.X + this.W-30) return false;//objects left is further right than this's right side
 				if (obj.X + obj.W < this.X+this.W)return false//objects right side is further left than this's left side
 				if (obj.Y > this.Y + this.H-15)return false;//this's bottom
 				if (obj.Y + obj.H < this.Y+15)return false;
@@ -16,25 +17,39 @@ function player(){
 	}
 	test.isCollLeft= function(obj){
 				if (obj.X > this.X ) return false;//objects left is further right than this's right side
-				if (obj.X + obj.W < this.X+35)return false//objects right side is further left than this's left side
+				if (obj.X + obj.W < this.X+30)return false//objects right side is further left than this's left side
 				if (obj.Y > this.Y + this.H-15)return false;
 				if (obj.Y + obj.H < this.Y+15)return false;
 				return true;
 	}
 	test.isCollTop = function(obj){
-				if (obj.X > this.X + this.W-8-35) return false;
-				if (obj.X + obj.W < this.X+8+35)return false;
+				if (obj.X > this.X + this.W-43) return false;
+				if (obj.X + obj.W < this.X+43)return false;
 				if (obj.Y > this.Y )return false;//obj top lower than this top
 				if (obj.Y + obj.H < this.Y)return false;//obj bottom is higher than this top
 				return true;
 	}
-	test.isCollBot = function(obj)
+	if(faceRight){
+		
+		test.isCollBot = function(obj)
 			{
 				if (obj.X > this.X + this.W-43) return false;
-				if (obj.X + obj.W < this.X+8+35)return false;
+				if (obj.X + obj.W < this.X+18)return false;
 				if (obj.Y > this.Y + this.H)return false;
 				if (obj.Y + obj.H < this.Y+this.H-5)return false;
 				return true;
+		}
+	}
+	if(faceLeft){
+
+		test.isCollBot = function(obj)
+			{
+				if (obj.X > this.X + this.W-18) return false;
+				if (obj.X + obj.W < this.X+43)return false;
+				if (obj.Y > this.Y + this.H)return false;
+				if (obj.Y + obj.H < this.Y+this.H-5)return false;
+				return true;
+		}
 	}
 	test.isUnder = function(obj)
 			{
@@ -46,8 +61,8 @@ function player(){
 	onIce = false;
 	onground = false;
 	flagTop=false;
-	flagRight= true;
-	flagLeft = true;
+	flagRight= false;
+	flagLeft = false;
 	test.Y += VelY;
 	
 	Collision();
@@ -66,45 +81,61 @@ function player(){
 	}
 	if(onIce){
 		IcePhysics();
+		
 	}
 	function IcePhysics(){
 		if (faceRight){
-			test.X += 2;
+			test.X += IceSpeed;
 		}
 		if (faceLeft){
-			test.X-=2;
+			test.X-=IceSpeed;
 		}
-		
+		IceSpeed *=0.97;
+		if(A||D){
+			IceSpeed=2;
+		}
 	}	
-	if(W && onground){
-	//	if(W){//flying
+	//if(W && onground){
+		if(W){//flying
 		VelY = -12;
 		onground = false;
-	}
+		}
 	if(attacking){
 		playerSpeed=0;
 		//setTimeout(StopMoving,1000)
-	}else
-		playerSpeed=8;//remove this when needed, put in StopMoving
-	if(A&&flagLeft){				
-		test.X -= playerSpeed;
+	}else 
+		playerSpeed =8;
+	
+	if(faceRight&&A&&!D){
+		test.X-=40;
+	}
+	if(faceLeft&&D&&!A){
+		test.X+=40;
+}
+	if(A&&!flagLeft&&!D){	
+		test.X -= playerSpeed;			
 		faceRight=false;
 		faceLeft=true;
 	}
 		
-	if(D&&flagRight){
-		test.X += playerSpeed;
+	if(D&&!flagRight&&!A){
+		test.X += playerSpeed;	
 		faceLeft=false;
 		faceRight=true;
-
-	}						
+	}	
+	if (!(D||A)){
+		
+		playerSpeed = 0;
+	}	
 	if (lives== 0){
 		gameover= true;
 		lives = 3;
 	}
-		if(attacking&&enemy.isColl(test)){
+		if(attacking&&test.isColl(enemy)){
 				enemy.X-=20000;
 				endDoor.Y = 272;
 		}
 	
 }
+
+	

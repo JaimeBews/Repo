@@ -1,6 +1,6 @@
 function Collision(){
 	if(test.isColl(endDoor)){
-		tutorial();
+		Level_One();
 	}
 	
 	
@@ -10,19 +10,30 @@ function Collision(){
 	if (test.X >= display.width - test.W-200){
 		test.X =display.width-test.W-200;	
 	}
+	if (test.Y<190){
+		test.Y =190;
+	}
+	if (test.Y >= 450){
+		test.Y =450;	
+	}
 	for(i=0;i<ground.length; i++){
 		if(test.isCollBot(ground[i])){	
 			test.Y=ground[i].Y-test.H;
 			onground = true;
 		}
 	}
-	for(i=0;i<fallAwayBlock.length; i++){
+	for(i=fallAwayBlock.length-1;i>=0;i--){
 		if(test.isCollBot(fallAwayBlock[i])){	
 			test.Y=fallAwayBlock[i].Y-test.H;
 			onground = true;
+			if (fallAwayBlock[i].toBeDeleted ==false){
 			
-			setTimeout(function() { fallAwayTimer(fallAwayBlock[i]);}, 500)
+				fallAwayTimer(i);
+				fallAwayBlock[i].toBeDeleted = true;
+			}
+			//console.log(i);
 		}
+
 	}
 		for(i=0;i<fallAwayBlock.length; i++){
 		if(test.isCollTop(fallAwayBlock[i])){	
@@ -32,14 +43,14 @@ function Collision(){
 	}
 	for(i=0;i<fallAwayBlock.length; i++){
 		if(test.isCollRight(fallAwayBlock[i])){
-		flagRight= false;
+		flagRight= true;
 		
 		}		
 	}
 
 	for(i=0;i<fallAwayBlock.length; i++){
 		if(test.isCollLeft(fallAwayBlock[i])){
-		flagLeft=false;
+		flagLeft=true;
 
 		}			
 	}
@@ -59,13 +70,13 @@ function Collision(){
 	}
 	for(i=0;i<iceBlock.length; i++){
 		if(test.isCollRight(iceBlock[i])){
-		flagRight= false;
+		flagRight= true;
 		
 		}		
 	}
 	for(i=0;i<iceBlock.length; i++){
 		if(test.isCollLeft(iceBlock[i])){
-		flagLeft=false;
+		flagLeft=true;
 
 		}			
 	}
@@ -89,22 +100,25 @@ function Collision(){
 	}
 	for(i=0;i<ground.length; i++){
 		if(test.isCollRight(ground[i])){
-		flagRight= false;
+		flagRight= true;
 		
 		}		
 	}
 
 	for(i=0;i<ground.length; i++){
 		if(test.isCollLeft(ground[i])){
-		flagLeft=false;
+		flagLeft=true;
 
 		}			
 	}
 	
 	//screen bounds
-if (flagRight&&test.X>= display.width-test.W-205&&!attacking&&( D || onIce)){
-		
+if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) ){
+		if(onIce &&!D){
+			playerSpeed=IceSpeed;
+		}
 		endDoor.X-=playerSpeed;
+		fire.X-=playerSpeed;
 		enemy.X-=playerSpeed;
 		emerald.X-=0.5*playerSpeed;	
 		WASD.X-=playerSpeed;
@@ -119,7 +133,6 @@ if (flagRight&&test.X>= display.width-test.W-205&&!attacking&&( D || onIce)){
 		}
 		for(i=0;i<ground.length; i++){			
 			ground[i].X -=playerSpeed;			
-
 		}
 		for(i=0;i<platform.length; i++){
 			platform[i].X-=playerSpeed;
@@ -137,11 +150,15 @@ if (flagRight&&test.X>= display.width-test.W-205&&!attacking&&( D || onIce)){
 			iceBlock[i].X-=playerSpeed;
 		}
 	}
-	if (flagLeft&&test.X<= 205&&!attacking&&(A || onIce)){
-		
+	if ((!flagLeft)&&test.X<= 205&&!attacking&& (A|| onIce)){
+		if(onIce&&!A){
+			playerSpeed=IceSpeed;
+		}
 		endDoor.X+=playerSpeed;
+		fire.X+=playerSpeed;
 		enemy.X+=playerSpeed;
 		WASD.X+=playerSpeed;
+		emerald.X+=0.5*playerSpeed;
 		for(i=0; i<fakeGround.length; i++){	
 			fakeGround[i].X+=playerSpeed;
 		}
@@ -154,7 +171,6 @@ if (flagRight&&test.X>= display.width-test.W-205&&!attacking&&( D || onIce)){
 		for(i=0;i<ground.length; i++){
 		
 			ground[i].X +=playerSpeed;
-			emerald.X+=.01/8*playerSpeed;
 		
 		}
 		for(i=0;i<platform.length; i++){
@@ -173,5 +189,76 @@ if (flagRight&&test.X>= display.width-test.W-205&&!attacking&&( D || onIce)){
 			iceBlock[i].X+=playerSpeed;
 		}
 	}
+	if (test.Y<200){
+		endDoor.Y+=Math.abs(VelY);
+		fire.Y+=Math.abs(VelY);
+		enemy.Y+=Math.abs(VelY);
+		WASD.Y+=Math.abs(VelY);
+		emerald.Y+=Math.abs(VelY);
+		for(i=0;i<ground.length; i++){
+			ground[i].Y +=Math.abs(VelY);		
+		}
+		for(i=0; i<fakeGround.length; i++){	
+			fakeGround[i].Y+=Math.abs(VelY);
+		}
+		for(i=0; i<spikes.length; i++){	
+			spikes[i].Y+=Math.abs(VelY);
+		}
+		for(i=0; i<fallingSpikes.length; i++){	
+			fallingSpikes[i].Y+=Math.abs(VelY);
+		}
+		for(i=0;i<platform.length; i++){
+			platform[i].Y+=Math.abs(VelY);
+			
+		}
+		for(i=0;i<platformX.length; i++){
+			platformX[i].Y+=Math.abs(VelY);
+			moveArrayX[i]+=Math.abs(VelY);
+			moveArray2X[i]+=Math.abs(VelY);
+		}
+		for(i=0;i<fallAwayBlock.length; i++){
+			fallAwayBlock[i].Y+=Math.abs(VelY);
+		}
+		for(i=0;i<iceBlock.length; i++){
+			iceBlock[i].Y+=Math.abs(VelY);
+		}
+	}
+		if (test.Y>440){
+			endDoor.Y-=Math.abs(VelY);
+			fire.Y-=Math.abs(VelY);
+			enemy.Y-=Math.abs(VelY);
+			WASD.Y-=Math.abs(VelY);
+			emerald.Y-=Math.abs(VelY);
+			for(i=0; i<fakeGround.length; i++){	
+				fakeGround[i].Y-=Math.abs(VelY);
+			}
+			for(i=0; i<spikes.length; i++){	
+				spikes[i].Y-=Math.abs(VelY);
+			}
+			for(i=0; i<fallingSpikes.length; i++){	
+				fallingSpikes[i].Y-=Math.abs(VelY);
+			}
+			for(i=0;i<ground.length; i++){
+			
+				ground[i].Y -=Math.abs(VelY);
+				
+			
+			}
+			for(i=0;i<platform.length; i++){
+				platform[i].Y-=Math.abs(VelY);
+				
+			}
+			for(i=0;i<platformX.length; i++){
+				platformX[i].Y-=Math.abs(VelY);
+				moveArrayX[i]-=Math.abs(VelY);
+				moveArray2X[i]-=Math.abs(VelY);
+			}
+			for(i=0;i<fallAwayBlock.length; i++){
+				fallAwayBlock[i].Y-=Math.abs(VelY);
+			}
+			for(i=0;i<iceBlock.length; i++){
+				iceBlock[i].Y-=Math.abs(VelY);
 
+			}
+		}
 }

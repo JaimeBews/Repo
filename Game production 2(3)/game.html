@@ -6,9 +6,11 @@
   <script language="javascript" type="text/javascript" src="Collision.js"></script>
   <script language="javascript" type="text/javascript" src="Object.js"></script>
   <script language="javascript" type="text/javascript" src="Tutorial.js"></script>
+  <script language="javascript" type="text/javascript" src="LevelOne.js"></script>
   <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
    <script language="javascript" type="text/javascript" src="Enemy.js"></script>
    <script language="javascript" type="text/javascript" src="Blocks.js"></script>
+    <script language="javascript" type="text/javascript" src="PlatformS.js"></script>
 </head>
 <body onkeydown="keyDown(event)" onkeyup ="keyUp(event)">
 	<canvas id="screen" width=800 height = 640></canvas>
@@ -27,7 +29,11 @@
 		var counter =0;
 		var currentlevel=0;
 		var hasnotbeenhit=true;
-		
+		var fire = new Object("images/fire.png", 500, 200, 65, 120);
+		fire.animCol=0;
+		fire.animRow=0;
+		fire.animHeight=120;
+		fire.animWidth=65;	
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
 		var gameover = false;
 		
@@ -36,20 +42,25 @@
 		
 		var WASD= new Object("images/wasd.png",300,220,150,100);
 		
-		var emerald = new Object("images/background.png", 0, 0, backgroundIncrement, 640);
+		var emerald = new Object("images/LevelTutorial/TutBackground.png", 0, 0, backgroundIncrement, 640);
+		
 		var test = new Object("images/sprite12.png", 500, 372, 100, 100);
 		
-		var enemy = new Object("images/test.png", 8000, 372, 50, 50);
+		var enemy = new Object("images/test_sheet.png", 500, 0, 70, 50);
+		enemy.animCol=0;
+		enemy.animRow=0;
+		enemy.animHeight=241;
+		enemy.animWidth=329;	
 		var spikes = new Array();
 		var fallingSpikes = new Array();
 		for(i=0;i<1;i++){
-			fallingSpikes[i] = new Object("images/spike.png",200,0,50,50);
+			fallingSpikes[i] = new Object("images/LevelTutorial/TutSpike1.png",200,0,50,50);
 			fallingSpikes[i].falling = false;
 		}
 		var endDoor = new Object("images/enddoor.png", 8700, 2372, 300, 300);
 		var fakeGround = new Array();
 		for(i=0;i<1;i++){
-			fakeGround[i] = new Object("images/grass_tile.png",-1000,372,100,100);
+			fakeGround[i] = new Object("images/LevelTutorial/TutGrass.png",-1000,372,100,100);
 		}
 		
 		var Health = new Array();
@@ -82,7 +93,7 @@
 				}
 				for(i=0;i<lives;i++){
 					ctx.drawImage(Health[i].Sprite, Health[i].X, Health[i].Y, Health[i].W, Health[i].H);
-				}
+				}			
 				ctx.drawImage(WASD.Sprite, WASD.X, WASD.Y, WASD.W, WASD.H);
 				ctx.drawImage(endDoor.Sprite, endDoor.X, endDoor.Y, endDoor.W, endDoor.H);
 				for(i=0; i<fakeGround.length; i++){	
@@ -101,14 +112,18 @@
 					
 				for(i=0; i<ground.length; i++){	
 					ctx.drawImage(ground[i].Sprite, ground[i].X, ground[i].Y,ground[i].W,ground[i].H);			
-				}
+				}				
 				ctx.drawImage(test.Sprite,animRow,animCol,animWidth,animHeight, test.X, test.Y, test.W, test.H);
-				ctx.drawImage(enemy.Sprite, enemy.X, enemy.Y, enemy.W, enemy.H);
+				ctx.drawImage(fire.Sprite,fire.animRow,fire.animCol,fire.animWidth,fire.animHeight, fire.X, fire.Y, fire.W, fire.H);
+				ctx.drawImage(enemy.Sprite,enemy.animRow,enemy.animCol,enemy.animWidth,enemy.animHeight, enemy.X, enemy.Y, enemy.W, enemy.H);
 				for(i=0; i<platform.length; i++){	
 					ctx.drawImage(platform[i].Sprite, platform[i].X, platform[i].Y,platform[i].W+15,platform[i].H);			
 				}
 				for(i=0; i<platformX.length; i++){	
 					ctx.drawImage(platformX[i].Sprite, platformX[i].X, platformX[i].Y,platformX[i].W+15,platformX[i].H);			
+				}
+				for(i=0;i< platformS.length;i++){
+					ctx.drawImage(platformS[i].Sprite, platformS[i].X, platformS[i].Y, platformS[i].W, platformS[i].H);
 				}
 				for(i=0; i<fallAwayBlock.length; i++){	
 					ctx.drawImage(fallAwayBlock[i].Sprite, fallAwayBlock[i].X, fallAwayBlock[i].Y,fallAwayBlock[i].W,fallAwayBlock[i].H);			
@@ -126,11 +141,13 @@
 			setTimeout(Main,1000/60);
 			MainMenu();
 			}else{
-				player();
+				player();				
 				Enemy();
 				Animate();		
 				platFormX();
 				platformY();
+				move();
+				
 				render();
 				setTimeout(Main,1000/60);
 			}

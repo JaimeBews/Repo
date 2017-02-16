@@ -1,28 +1,29 @@
-	
+	//emerald.Sprite.src = "images/wasd.png";
 	function tutorial(){
 		test.X=500
-		test.Y=0
-		enemy.X=8000;
-		enemy.Y=500;
+		test.Y=372
+		enemy.X=500;
+		enemy.Y=300;
 		endDoor.X=8300;
 		endDoor.Y= -2372;
 		for (i=0; i<250; i++ ){
-			ground[i] = new Object ("images/grass_tile.png", 100*i, display.height -100,100,100);
+			ground[i] = new Object ("images/LevelTutorial/TutGrass.png", 100*i, display.height -100,100,100);
 		}
 		for(i=0; i<5; i++){
-			platform[i] = new Object ("images/platform.png");
+			platform[i] = new Object ("images/LevelTutorial/TutPlatform.png",999,999,64,64);
 		}
 		for(i=0; i<3; i++){
-			platformX[i] = new Object ("images/platform.png",3050,420,64,32);
+			platformX[i] = new Object ("images/LevelTutorial/TutPlatform.png",3050,420,64,32);
 		}
 		for(i=0;i<5;i++){
-			spikes[i] = new Object("images/spike.png",3100+i*75,490,50,50);
+			spikes[i] = new Object("images/LevelTutorial/TutSpike.png",3100+i*75,490,50,50);
 		}
-		for (i=0; i<50; i++ ){
-			fallAwayBlock[i] = new Object ("images/grass_tile.png", 500+150*i, display.height -350,100,100);
+		for (i=0; i<10; i++ ){
+			fallAwayBlock[i] = new Object ("images/grass_tile.png", 500+100*i, display.height -250,100,100);
+			fallAwayBlock[i].toBeDeleted= false;
 		}
 		for (i=0; i<4; i++ ){
-			iceBlock[i] = new Object ("images/grass_tile.png", 800+100*i, display.height- 300,100,100);
+			iceBlock[i] = new Object ("images/icetile3.png", 800+100*i, display.height- 300,100,100);
 		}
 	ground[220].Y=500;
 	var indexj = 0;

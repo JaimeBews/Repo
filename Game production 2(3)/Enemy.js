@@ -23,7 +23,7 @@ function Enemy(){
 		if(test.isCollBot(spikes[i]))
 			gameover=true;
 	}
-	if (test.isColl(enemy)&&hasnotbeenhit&&!attacking){
+	if (test.isCollBot(enemy)&&hasnotbeenhit&&!attacking){
 	wasHit();
 	}
 	function wasHit(){
