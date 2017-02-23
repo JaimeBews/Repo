@@ -1,24 +1,37 @@
 	
 	function Level_One(){
+		ClearAllArrays();
+		emerald.Sprite.src="images/LevelOne/L1Background.png";
+		emerald.H=1900;
+		emerald.X=0;
+		emerald.Y=0;
 		test.X=500
 		test.Y=372
 		enemy.X=8000;
 		enemy.Y=500;
 		endDoor.X=8300;
 		endDoor.Y= -2372;
-		for (i=0; i<250; i++ ){
+		for (i=0; i<350; i++ ){
 			ground[i] = new Object ("images/grass_tile.png", 100*i, display.height -100,100,100);
 		}
 		for(i=0; i<5; i++){
-			platform[i] = new Object ("images/platform.png");
+			platform[i] = new Object ("images/LevelTutorial/TutPlatform.png",999,999,64,64);
+			platform[i].MaxArray =true;
+			platform[i].platformSpeed =1;
 		}
 		for(i=0; i<3; i++){
-			platformX[i] = new Object ("images/platform.png",3050,420,64,32);
+			platformX[i] = new Object ("images/LevelTutorial/TutPlatform.png",3050,420,64,32);
+			platformX[i].MaxArrayX=true;
+			platformX[i].platformSpeed=1;
 		}
+		//for(i=0;i<1;i++){
+		//	fallingSpikes[i] = new Object("images/LevelTutorial/TutSpike1.png",200,0,50,50);
+		//	fallingSpikes[i].falling = false;
+		//}
 		/*for(i=0;i<5;i++){
-			spikes[i] = new Object("images/spike.png",3100+i*75,490,50,50);
+			spikes[i] = new Object("images/spike.png",1000,490,50,50);
 		}
-		for (i=0; i<1; i++ ){
+		/*for (i=0; i<1; i++ ){
 			fallAwayBlock[i] = new Object ("images/grass_tile.png", 500, display.height -150,100,100);
 		}
 		for (i=0; i<4; i++ ){
@@ -33,20 +46,21 @@
 		indexj++;
 	}
 	*/		 
-		 platform[4].X = 2120;
-		 platform[4].Y = 450;
+		 //Platform up
+		 platform[4].X = 100;
+		 platform[4].Y = 4400;
 		 platform[4].W =32;
 		 platform[4].H = 32;		
 		 platform[0].X = 5400;
-		 platform[0].Y = 300;
+		 platform[0].Y = 4000;
 		 platform[0].W =64;
 		 platform[0].H = 32;
 		  platform[1].X = 5850;
-		 platform[1].Y = 300;
+		 platform[1].Y = 5000;
 		 platform[1].W =32;
 		 platform[1].H = 32;
 		  platform[2].X = 6000;
-		 platform[2].Y = 350;
+		 platform[2].Y = 450;
 		 platform[2].W =32;
 		 platform[2].H = 32;
 		platform[3].X = 6150;
@@ -54,29 +68,20 @@
 		 platform[3].W =32;
 		 platform[3].H = 32;
 		 
-		platformX[0].X = 3250;
-		 platformX[0].Y = 420;
+		 //Left and right
+		 platformX[0].X = 4700;
+		 platformX[0].Y = -400;
 		 platformX[0].W =64;
 		 platformX[0].H = 32;
-		platformX[1].X = 4800;
-		 platformX[1].Y = 500;
-		 platformX[1].W =180;
-		 platformX[1].H = 32;
-		platformX[2].X = 5100;
-		 platformX[2].Y = 400;
-		 platformX[2].W =64;
-		 platformX[2].H = 32;	
-
+		
 		 
+		 	for(i=0;i<platformX.length;i++){
+		 	platformX[i].moveArrayX  = platformX[i].X - 120;
+			platformX[i].moveArray2X = platformX[i].X + 120;
+			}
 		 	for(i=0;i<platform.length;i++){
-			moveArray[i] = platform[i].Y - 120;
-			moveArray2[i] = platform[i].Y + 120;
-			MaxArray[i]=true;
-		}
-			for(i=0;i<platformX.length;i++){
-			moveArrayX[i] = platformX[i].X - 120;
-			moveArray2X[i] = platformX[i].X + 120;
-			MaxArrayX[i]=true;
+			platform[i].moveArray= platform[i].Y - 120;
+			platform[i].moveArray2 = platform[i].Y + 120;
 		}
 		//Not in used
 		 ground[41].X=-0;
@@ -199,8 +204,9 @@
 		 ground[67].X=800;
 		 ground[67].Y=display.height- 100;
 		
-		//Fall 68-80
+		//Fall 68-80, wall
 		 ground[68].X=800;
+		 //fill
 		 ground[68].Y=display.height- 0;
 		 ground[69].X=800;
 		 ground[69].Y=display.height- -100;
@@ -210,6 +216,64 @@
 		 ground[71].Y=display.height- -300;
 		 ground[72].X=800;
 		 ground[72].Y=display.height- -400;
+		 
+		 //fill
+		 ground[259].X=700;
+		 ground[259].Y=display.height- 0;
+		 ground[260].X=700;
+		 ground[260].Y=display.height- -100;
+		 ground[261].X=700;
+		 ground[261].Y=display.height- -200;
+		 ground[262].X=700;
+		 ground[262].Y=display.height- -300;
+		 ground[263].X=700;
+		 ground[263].Y=display.height- -400;
+		 
+		 //fill
+		 ground[264].X=600;
+		 ground[264].Y=display.height- 0;
+		 ground[265].X=600;
+		 ground[265].Y=display.height- -100;
+		 ground[266].X=600;
+		 ground[266].Y=display.height- -200;
+		 ground[267].X=600;
+		 ground[267].Y=display.height- -300;
+		 ground[268].X=600;
+		 ground[268].Y=display.height- -400;
+		 
+		 //fill
+		 ground[269].X=500;
+		 ground[269].Y=display.height- 0;
+		 ground[270].X=500;
+		 ground[270].Y=display.height- -100;
+		 ground[271].X=500;
+		 ground[271].Y=display.height- -200;
+		 ground[272].X=500;
+		 ground[272].Y=display.height- -300;
+		 ground[273].X=500;
+		 ground[273].Y=display.height- -400;
+		 
+		 //fill
+		 ground[274].X=400;
+		 ground[274].Y=display.height- 0;
+		 ground[275].X=400;
+		 ground[275].Y=display.height- -100;
+		 ground[276].X=400;
+		 ground[276].Y=display.height- -200;
+		 ground[277].X=400;
+		 ground[277].Y=display.height- -300;
+		 ground[278].X=400;
+		 ground[278].Y=display.height- -400;
+		 
+		 //fill
+		 ground[279].X=2300;
+		 ground[279].Y=display.height- -350;
+		 ground[280].X=2400;
+		 ground[280].Y=display.height- -350;
+		 ground[281].X=2300;
+		 ground[281].Y=display.height- -400;
+		 ground[282].X=2400;
+		 ground[282].Y=display.height- -400;
 		 
 		 //Walls 80-
 		 ground[105].X=1400;
@@ -327,11 +391,11 @@
 		 ground[136].X=3200;
 		 ground[136].Y=display.height- -400;
 		 ground[136].W=100
-		 ground[136].H=50
+		 ground[136].H=100
 		 ground[137].X=3300;
 		 ground[137].Y=display.height- -400;
 		 ground[137].W=100
-		 ground[137].H=50
+		 ground[137].H=100
 		 //Fill 133-135
 		 ground[133].X=2800;
 		 ground[133].Y=display.height- -400;
@@ -424,11 +488,162 @@
 		 ground[180].X=3400;
 		 ground[180].Y=display.height- -400;
 		 ground[180].W=100
-		 ground[180].H=50
+		 ground[180].H=100
 		 ground[181].X=3500;
 		 ground[181].Y=display.height- -400;
 		 ground[181].W=100
-		 ground[181].H=50
+		 ground[181].H=100
+		 ground[200].X=3500;
+		 ground[200].Y=display.height- 300;
+		 ground[201].X=3600;
+		 ground[201].Y=display.height- 300;
+		 ground[202].X=3700;
+		 ground[202].Y=display.height- 300;
+		 ground[203].X=3800;
+		 ground[203].Y=display.height- 300;
+		 ground[204].X=3900;
+		 ground[204].Y=display.height- 100;
+		 ground[205].X=3900;
+		 ground[205].Y=display.height- 200;
+		 ground[206].X=3900;
+		 ground[206].Y=display.height- 300;
+		 ground[207].X=4000;
+		 ground[207].Y=display.height- 100;
+		 ground[208].X=4000;
+		 ground[208].Y=display.height- 200;
+		 ground[209].X=4000;
+		 ground[209].Y=display.height- 300;
+		 ground[210].X=4100;
+		 ground[210].Y=display.height- 100;
+		 ground[211].X=4100;
+		 ground[211].Y=display.height- 200;
+		 ground[212].X=4100;
+		 ground[212].Y=display.height- 300;
+		 ground[213].X=4200;
+		 ground[213].Y=display.height- 200;
+		 ground[214].X=4200;
+		 ground[214].Y=display.height- 300;
+		 ground[215].X=4300;
+		 ground[215].Y=display.height- 200;
+		 ground[216].X=4300;
+		 ground[216].Y=display.height- 300;
+		 ground[217].X=4400;
+		 ground[217].Y=display.height- 200;
+		 ground[218].X=4400;
+		 ground[218].Y=display.height- 300;
+		 ground[219].X=4500;
+		 ground[219].Y=display.height- 200;
+		 ground[220].X=4500;
+		 ground[220].Y=display.height- 300;
+		 ground[221].X=4600;
+		 ground[221].Y=display.height- 200;
+		 ground[222].X=4600;
+		 ground[222].Y=display.height- 300;
+		 
+		 //Land
+		 ground[182].X=3700;
+		 ground[182].Y=display.height- -200;
+		 ground[182].W=100
+		 ground[182].H=50
+		 ground[183].X=3800;
+		 ground[183].Y=display.height- -200;
+		 ground[183].W=100
+		 ground[183].H=50
+		 ground[184].X=4000;
+		 ground[184].Y=display.height- -300;
+		 
+		 ground[185].X=4000;
+		 ground[185].Y=display.height- -400;
+		 ground[186].X=4000;
+		 ground[186].Y=display.height- -500;
+		
+  		 ground[187].X=4000;
+		 ground[187].Y=display.height- -600;
+		 ground[188].X=4100;
+		 ground[188].Y=display.height- -400;
+		 ground[221].X=4100;
+		 ground[221].Y=display.height- -500;
+		 ground[222].X=4100;
+		 ground[222].Y=display.height- -600;
+		 ground[223].X=4200;
+		 ground[223].Y=display.height- -500;
+		 ground[224].X=4200;
+		 ground[224].Y=display.height- -600;
+		 ground[225].X=4300;
+		 ground[225].Y=display.height- -500;
+		 ground[226].X=4300;
+		 ground[226].Y=display.height- -600;
+		 ground[227].X=4400;
+		 ground[227].Y=display.height- -500;
+		 ground[228].X=4400;
+		 ground[228].Y=display.height- -600;
+		 
+		 //End to this part/Gap
+		 ground[229].X=4900;
+		 ground[229].Y=display.height- -500;
+		 ground[230].X=4900;
+		 ground[230].Y=display.height- -600;
+		 ground[231].X=5000;
+		 ground[231].Y=display.height- -500;
+		 ground[232].X=5000;
+		 ground[232].Y=display.height- -600;
+		 ground[233].X=5100;
+		 ground[233].Y=display.height- -500;
+		 ground[234].X=5100;
+		 ground[234].Y=display.height- -600;
+		 
+		 //Doorspot x=5200
+		 ground[235].X=5200;
+		 ground[235].Y=display.height- -500;
+		 ground[236].X=5200;
+		 ground[236].Y=display.height- -600;
+		 
+		 //Final walls
+		 ground[237].X=5300;
+		 ground[237].Y=display.height- -100;
+		 ground[238].X=5300;
+		 ground[238].Y=display.height- -200;
+		 ground[239].X=5300;
+		 ground[239].Y=display.height- -300;
+		 ground[240].X=5300;
+		 ground[240].Y=display.height- -400;
+		 ground[241].X=5300;
+		 ground[241].Y=display.height- -500;
+		 ground[242].X=5300;
+		 ground[242].Y=display.height- -600;
+		 ground[243].X=5300;
+		 ground[243].Y=display.height- 0;
+		 
+		 ground[245].X=5400;
+		 ground[245].Y=display.height- -100;
+		 ground[246].X=5400;
+		 ground[246].Y=display.height- -200;
+		 ground[247].X=5400;
+		 ground[247].Y=display.height- -300;
+		 ground[248].X=5400;
+		 ground[248].Y=display.height- -400;
+		 ground[249].X=5400;
+		 ground[249].Y=display.height- -500;
+		 ground[250].X=5400;
+		 ground[250].Y=display.height- -600;
+		 ground[251].X=5400;
+		 ground[251].Y=display.height- 0;
+		 
+		 ground[252].X=5500;
+		 ground[252].Y=display.height- -100;
+		 ground[253].X=5500;
+		 ground[253].Y=display.height- -200;
+		 ground[254].X=5500;
+		 ground[254].Y=display.height- -300;
+		 ground[255].X=5500;
+		 ground[255].Y=display.height- -400;
+		 ground[256].X=5500;
+		 ground[256].Y=display.height- -500;
+		 ground[257].X=5500;
+		 ground[257].Y=display.height- -600;
+		 ground[258].X=5500;
+		 ground[258].Y=display.height- 0;
+		 
 		 
 		 
 }

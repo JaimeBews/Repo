@@ -6,8 +6,11 @@ var onIce = false;
 var flagRight= true;
 var flagLeft= true;
 var IceSpeed=2;
+var flying= false
 function player(){
-
+if(F){
+		Shooter();
+}
 	test.isCollRight= function(obj){
 				if (obj.X > this.X + this.W-30) return false;//objects left is further right than this's right side
 				if (obj.X + obj.W < this.X+this.W)return false//objects right side is further left than this's left side
@@ -95,11 +98,17 @@ function player(){
 			IceSpeed=2;
 		}
 	}	
-	//if(W && onground){
-		if(W){//flying
+	if(W&& flying){//flying
+			
 		VelY = -12;
 		onground = false;
-		}
+	}
+	
+	if(W && onground){
+		
+			VelY = -12;
+			onground = false;
+	}
 	if(attacking){
 		playerSpeed=0;
 		//setTimeout(StopMoving,1000)

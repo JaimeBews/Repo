@@ -1,29 +1,37 @@
 <!DOCTYPE HTML>
 <head>
-  <script language="javascript" type="text/javascript" src="Animate.js"></script>
-  <script language="javascript" type="text/javascript" src="Player.js"></script>
-  <script language="javascript" type="text/javascript" src="Controller.js"></script>
-  <script language="javascript" type="text/javascript" src="Collision.js"></script>
-  <script language="javascript" type="text/javascript" src="Object.js"></script>
-  <script language="javascript" type="text/javascript" src="Tutorial.js"></script>
-  <script language="javascript" type="text/javascript" src="LevelOne.js"></script>
-  <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
+   <script language="javascript" type="text/javascript" src="Shooter.js"></script>
+   <script language="javascript" type="text/javascript" src="PlatformS.js"></script>
+   <script language="javascript" type="text/javascript" src="Animate.js"></script>
+   <script language="javascript" type="text/javascript" src="Player.js"></script>
+   <script language="javascript" type="text/javascript" src="Controller.js"></script>
+   <script language="javascript" type="text/javascript" src="Collision.js"></script>
+   <script language="javascript" type="text/javascript" src="Object.js"></script>
+   <script language="javascript" type="text/javascript" src="Tutorial.js"></script>
+   <script language="javascript" type="text/javascript" src="LevelOne.js"></script>
+   <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
    <script language="javascript" type="text/javascript" src="Enemy.js"></script>
    <script language="javascript" type="text/javascript" src="Blocks.js"></script>
-    <script language="javascript" type="text/javascript" src="PlatformS.js"></script>
+   <script language="javascript" type="text/javascript" src="ClearArrays.js"></script>
+
+
 </head>
 <body onkeydown="keyDown(event)" onkeyup ="keyUp(event)">
 	<canvas id="screen" width=800 height = 640></canvas>
+
 	<script>
 		var display = document.getElementById("screen");
 		var ctx = display.getContext('2d');		
-				
+		
+		var sound = new Audio("NextLevels.mp3",100,true);
+		sound.play();
+		
 		var VelY=0;
 		var E_VelY=0
 		var falling;
 		var backgroundIncrement = 2700;
 		var gravity = 0.5;
-		var lives=3;
+		var lives=12;
 		var attacking = false;
 		var ground = new Array();
 		var counter =0;
@@ -34,9 +42,15 @@
 		fire.animRow=0;
 		fire.animHeight=120;
 		fire.animWidth=65;	
+		
+
+		
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
 		var gameover = false;
+		var jumpwalls= new Array();
 		
+		var shooter = new Array();
+	
 		var mainmenu= true;
 		var Menu= new Object("images/Mainmenu.png",0,0,800,640);
 		
@@ -53,15 +67,10 @@
 		enemy.animWidth=329;	
 		var spikes = new Array();
 		var fallingSpikes = new Array();
-		for(i=0;i<1;i++){
-			fallingSpikes[i] = new Object("images/LevelTutorial/TutSpike1.png",200,0,50,50);
-			fallingSpikes[i].falling = false;
-		}
+
 		var endDoor = new Object("images/enddoor.png", 8700, 2372, 300, 300);
 		var fakeGround = new Array();
-		for(i=0;i<1;i++){
-			fakeGround[i] = new Object("images/LevelTutorial/TutGrass.png",-1000,372,100,100);
-		}
+		
 		
 		var Health = new Array();
 		for(i=0;i<lives;i++){
@@ -73,7 +82,7 @@
 				tutorial();
 		}
 		
-		tutorial();
+		//tutorial();
 	
 		function render(){
 		if(mainmenu){	
@@ -91,13 +100,25 @@
 					emerald.X = 0;
 					ctx.drawImage(emerald.Sprite, emerald.X, emerald.Y, emerald.W, emerald.H);
 				}
-				for(i=0;i<lives;i++){
-					ctx.drawImage(Health[i].Sprite, Health[i].X, Health[i].Y, Health[i].W, Health[i].H);
-				}			
+				
+							
+
+
 				ctx.drawImage(WASD.Sprite, WASD.X, WASD.Y, WASD.W, WASD.H);
+				
+				for(i=0; i<bullet.length; i++){
+				
+					ctx.drawImage(bullet[i].Sprite, bullet[i].X, bullet[i].Y,bullet[i].W,bullet[i].H);	
+				}
+				for (i=0; i<shooter.length; i++){
+					ctx.drawImage(shooter[i].Sprite, shooter[i].X, shooter[i].Y,shooter[i].W,shooter[i].H);
+				}
 				ctx.drawImage(endDoor.Sprite, endDoor.X, endDoor.Y, endDoor.W, endDoor.H);
 				for(i=0; i<fakeGround.length; i++){	
 					ctx.drawImage(fakeGround[i].Sprite, fakeGround[i].X, fakeGround[i].Y,fakeGround[i].W,fakeGround[i].H);			
+				}
+				for(i=0;i<jumpwalls.length;i++){
+					ctx.drawImage(jumpwalls[i].Sprite, jumpwalls[i].X, jumpwalls[i].Y,jumpwalls[i].W,jumpwalls[i].H);	
 				}
 				for(i=0; i<spikes.length; i++){	
 					ctx.drawImage(spikes[i].Sprite, spikes[i].X, spikes[i].Y,spikes[i].W,spikes[i].H);			
@@ -116,6 +137,8 @@
 				ctx.drawImage(test.Sprite,animRow,animCol,animWidth,animHeight, test.X, test.Y, test.W, test.H);
 				ctx.drawImage(fire.Sprite,fire.animRow,fire.animCol,fire.animWidth,fire.animHeight, fire.X, fire.Y, fire.W, fire.H);
 				ctx.drawImage(enemy.Sprite,enemy.animRow,enemy.animCol,enemy.animWidth,enemy.animHeight, enemy.X, enemy.Y, enemy.W, enemy.H);
+				
+				
 				for(i=0; i<platform.length; i++){	
 					ctx.drawImage(platform[i].Sprite, platform[i].X, platform[i].Y,platform[i].W+15,platform[i].H);			
 				}
@@ -131,6 +154,10 @@
 				for(i=0; i<iceBlock.length; i++){	
 					ctx.drawImage(iceBlock[i].Sprite, iceBlock[i].X, iceBlock[i].Y,iceBlock[i].W,iceBlock[i].H);			
 				}
+				for (i=0; i<lives;i++){
+					ctx.drawImage(Health[i].Sprite, Health[i].X, Health[i].Y,Health[i].W,Health[i].H);
+				}
+				
 			}
 		}
 		
@@ -147,7 +174,7 @@
 				platFormX();
 				platformY();
 				move();
-				
+				updateBullet();
 				render();
 				setTimeout(Main,1000/60);
 			}

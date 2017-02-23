@@ -20,8 +20,9 @@ function Enemy(){
 		enemy.X-=E_Speed;
 	
 	for(i=0;i<spikes.length;i++){
-		if(test.isCollBot(spikes[i]))
-			gameover=true;
+		if(test.isCollBot(spikes[i])&&hasnotbeenhit){
+			wasHit();
+		}
 	}
 	if (test.isCollBot(enemy)&&hasnotbeenhit&&!attacking){
 	wasHit();

@@ -1,36 +1,31 @@
-	var MaxArray =new Array();
-	var platform = new Array();
-	var moveArray = new Array();
-	var moveArray2 = new Array();
-		
-	var MaxArrayX =new Array();
 	var platformX = new Array();
-	var moveArrayX = new Array();
-	var moveArray2X = new Array();
-	var platformSpeed=1;
+	var platform = new Array();
 function platFormX(){
 	for (i=0;i<platformX.length;i++){
-	if (platformX[i].X > moveArrayX[i] && MaxArrayX[i] == true){
-		platformX[i].X += -platformSpeed; //move speed left
+	if (platformX[i].X > platformX[i].moveArrayX && platformX[i].MaxArrayX){
+		platformX[i].X += -platformX[i].platformSpeed; //move speed left
+		
 	}else 
-		MaxArrayX[i] = false;
-	if (platformX[i].X < moveArray2X[i] && MaxArrayX[i] == false){
-		platformX[i].X += platformSpeed; //move speed right
+		platformX[i].MaxArrayX = false;
+	if (platformX[i].X < platformX[i].moveArray2X && platformX[i].MaxArrayX == false){
+		platformX[i].X += platformX[i].platformSpeed; //move speed right
 	}else 
-		MaxArrayX[i] = true;
+		platformX[i].MaxArrayX = true;
 	}
 }
 
 function platformY(){
+		
+	for (i=0;i<platform.length;i++){
 	
-	for (i=0;i<platform.length;i++){	
-	if (platform[i].Y > moveArray[i] && MaxArray[i] == true){
-		platform[i].Y -= 1; //move speed up
+	if (platform[i].Y > platform[i].moveArray && platform[i].MaxArray){
+		platform[i].Y += -platform[i].platformSpeed; //move speed left
+		
 	}else 
-		MaxArray[i] = false;
-	if (platform[i].Y < moveArray2[i] && MaxArray[i] == false){
-		platform[i].Y += 1; //move speed down
+		platform[i].MaxArray = false;
+	if (platform[i].Y < platform[i].moveArray2 && platform[i].MaxArray == false){
+		platform[i].Y += platform[i].platformSpeed; //move speed right
 	}else 
-		MaxArray[i] = true;
+		platform[i].MaxArray = true;
 	}
 }
