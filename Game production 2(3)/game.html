@@ -28,7 +28,7 @@
 		
 		var gameover = false;
 		var mainmenu= true;
-		var currentlevel=0;
+		//var currentlevel=0; later use
 		
 		var fire = new Object("images/fire.png", 500, 200, 65, 120);
 		fire.animCol=0;
@@ -67,12 +67,11 @@
 		
 			
 		function MainMenu(){
-			if(G)
+			if(G){
 				mainmenu=false;
 				tutorial();
+				}
 		}
-		
-		//tutorial();
 	
 		function render(){
 		if(mainmenu){	

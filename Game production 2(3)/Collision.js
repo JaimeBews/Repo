@@ -1,4 +1,6 @@
 function Collision(){
+	powerUp();
+		
 	if(test.isColl(endDoor)){
 		Level_One();
 	}
@@ -17,23 +19,21 @@ function Collision(){
 		test.Y =450;	
 	}
 
-	powerUp();
+
+	
 	for(i=fallAwayBlock.length-1;i>=0;i--){
 		if(test.isCollBot(fallAwayBlock[i])){	
 			test.Y=fallAwayBlock[i].Y-test.H;
 			onground = true;
 			if (fallAwayBlock[i].toBeDeleted ==false){
-			
 				fallAwayTimer(i);
 				fallAwayBlock[i].toBeDeleted = true;
 			}
-			//console.log(i);
 		}
 
 	}
 		for(i=0;i<fallAwayBlock.length; i++){
-		if(test.isCollTop(fallAwayBlock[i])){	
-			
+		if(test.isCollTop(fallAwayBlock[i])){		
 			flagTop = true;
 		}
 	}

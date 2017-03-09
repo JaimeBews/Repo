@@ -1,7 +1,8 @@
-	//emerald.Sprite.src = "images/wasd.png";
+
 	function tutorial(){
 		var sound = new Audio("Sounds/BackgroundMusic1.mp3");
 		sound.volume = 0.5;
+		sound.loop=true;
 		sound.play();
 		test.X=500
 		test.Y=372
@@ -46,7 +47,7 @@
 			fallingSpikes[i].falling = false;
 		}
 		//for(i=0;i<1;i++){
-	//		fakeGround[i] = new Object("images/LevelTutorial/TutGrass.png",-1000,372,100,100);
+	//		fakeGround[i] = new Object("images/LevelTutorial/TutGrass.png",500,372,100,100);
 		//}
 		//for(i=0;i<1;i++){
 	//		jumpwalls[i] = new Object("images/LevelTutorial/TutGrass.png",300,320-100*i,100,100)

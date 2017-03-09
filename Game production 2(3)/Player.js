@@ -147,7 +147,6 @@ function player(){
 		}
 	for (i=0;i<newEnemy.length;i++){
 		if(attacking&&test.isColl(newEnemy[i])){
-			console.log("happening");
 			 newEnemy.splice(i,1);
 		}
 	}

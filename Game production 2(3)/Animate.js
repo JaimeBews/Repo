@@ -46,7 +46,7 @@ function Animate(){ //needs a if(D&&A)
 	}
 		if(attacking&&faceLeft){
 			
-			console.log(attacking);
+		
 			animCol= 150;
 			animHeight=75;
 			delay++;
