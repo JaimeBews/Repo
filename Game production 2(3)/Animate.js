@@ -5,7 +5,10 @@ var animRow = 0;
 var animCol = 75;
 var animHeight=75;
 var animWidth=50;
+var counter =0;
 var recently_Attacked = false;
+var attacking = false;
+
 function Animate(){ //needs a if(D&&A)
 	if(D&&onground&&!attacking&&!A){
 		animCol= 75;

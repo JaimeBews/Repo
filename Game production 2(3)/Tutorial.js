@@ -9,6 +9,18 @@
 		enemy.Y=300;
 		endDoor.X=8300;
 		endDoor.Y= -2372;
+		
+		for (i=0;i<10;i++){
+			newEnemy[i] = new Object("images/test_sheet.png", 500+50*i, 350, 70, 50);
+			newEnemy[i].animCol=0;
+			newEnemy[i].animRow=0;
+			newEnemy[i].animHeight=241;
+			newEnemy[i].animWidth=329;
+			newEnemy[i].E_VelY=0;
+			newEnemy[i].enemyCounter=0;
+			newEnemy[i].enemyResetCounter =0;
+		}
+		
 		for(i=0;i<3;i++){
 			HealthPowerUp[i] = new Object("images/wasd.png",500+50*i,300,50,50);
 		}

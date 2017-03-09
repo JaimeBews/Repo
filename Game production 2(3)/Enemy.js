@@ -1,4 +1,5 @@
-
+var E_VelY=0;
+var hasnotbeenhit=true;
 function Enemy(){
 	E_onground = false;
 	E_flagTop=false;

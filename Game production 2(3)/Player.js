@@ -7,6 +7,9 @@ var flagRight= true;
 var flagLeft= true;
 var IceSpeed=2;
 var flying= false
+var VelY=0;
+var gravity = 0.5;
+var lives=12;
 function player(){
 
 	test.isCollRight= function(obj){
@@ -65,7 +68,7 @@ function player(){
 	flagRight= false;
 	flagLeft = false;
 	test.Y += VelY;
-	
+
 	Collision();
 	if(test.Y > 750){
 		gameover=true;
@@ -143,10 +146,9 @@ function player(){
 				endDoor.Y = 272;
 		}
 	for (i=0;i<newEnemy.length;i++){
-		console.log("happening");
 		if(attacking&&test.isColl(newEnemy[i])){
 			console.log("happening");
-			 newEnemy.splice(newEnemy[i],1);
+			 newEnemy.splice(i,1);
 		}
 	}
 }

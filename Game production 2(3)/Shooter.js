@@ -1,7 +1,7 @@
 var bullet= new Array();
 
 
-function Shooter(){//maybe make it so each shooter keeps tracks of its current bullet count
+function Shooter(){						//maybe make it so each shooter keeps tracks of its current bullet count
 	for (i=0;i<shooter.length;i++){
 		shooter[i].xdist =test.X-shooter[i].X
 		shooter[i].ydist = test.Y-shooter[i].Y;

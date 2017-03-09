@@ -8,5 +8,5 @@ function ClearAllArrays(){
 	spikes.length = 0;
 	fallAwayBlock.length = 0;
 	iceBlock.length = 0;
-
+	//newEnemy = 0;
 }//we never deleted the objects !!!!!!!! memory leak
