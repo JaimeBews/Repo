@@ -118,7 +118,7 @@ function player(){
 	}
 	if(faceLeft&&D&&!A){
 		test.X+=40;
-}
+	}
 	if(A&&!flagLeft&&!D){	
 		test.X -= playerSpeed;			
 		faceRight=false;
@@ -142,7 +142,13 @@ function player(){
 				enemy.X-=20000;
 				endDoor.Y = 272;
 		}
-	
+	for (i=0;i<newEnemy.length;i++){
+		console.log("happening");
+		if(attacking&&test.isColl(newEnemy[i])){
+			console.log("happening");
+			 newEnemy.splice(newEnemy[i],1);
+		}
+	}
 }
 
 	

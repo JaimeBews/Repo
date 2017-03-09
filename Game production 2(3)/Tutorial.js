@@ -50,7 +50,7 @@
 			iceBlock[i] = new Object ("images/icetile3.png", 800+100*i, display.height- 300,100,100);
 		}
 	ground[220].Y=500;
-	var indexj = 0;
+	//var indexj = 0;
 	/*for(j=220;j<250;j++){
 		
 		ground[j].X = 500+indexj*10;

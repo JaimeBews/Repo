@@ -6,7 +6,7 @@ var platformLimit = 6;
 var platformRight = 0;
 var platformS = new Array();
 var platformOG = new Array();
-var bullet= new Array();
+
 
 
 function move(){
