@@ -9,4 +9,4 @@ function ClearAllArrays(){
 	fallAwayBlock.length = 0;
 	iceBlock.length = 0;
 
-}
+}//we never deleted the objects !!!!!!!! memory leak

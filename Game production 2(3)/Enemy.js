@@ -24,6 +24,11 @@ function Enemy(){
 			wasHit();
 		}
 	}
+	for (i=0;i<bullet.length;i++){
+		if(test.isColl(bullet[i])&&hasnotbeenhit){
+			wasHit();
+		}
+	}
 	if (test.isCollBot(enemy)&&hasnotbeenhit&&!attacking){
 	wasHit();
 	}

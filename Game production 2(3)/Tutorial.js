@@ -1,12 +1,17 @@
 	//emerald.Sprite.src = "images/wasd.png";
 	function tutorial(){
+		var sound = new Audio("Sounds/BackgroundMusic1.mp3");
+		sound.volume = 0.5;
+		sound.play();
 		test.X=500
 		test.Y=372
 		enemy.X=8300;
 		enemy.Y=300;
 		endDoor.X=8300;
 		endDoor.Y= -2372;
-
+		for(i=0;i<3;i++){
+			HealthPowerUp[i] = new Object("images/wasd.png",500+50*i,300,50,50);
+		}
 		for (i=0; i<250; i++ ){
 			ground[i] = new Object ("images/LevelTutorial/TutGrass.png", 100*i, display.height -100,100,100);
 		}

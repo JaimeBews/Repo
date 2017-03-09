@@ -16,7 +16,16 @@ function Collision(){
 	if (test.Y >= 450){
 		test.Y =450;	
 	}
-	
+
+	for (i=0; i<HealthPowerUp.length; i++){
+		if (test.isColl(HealthPowerUp[i])){
+			HealthPowerUp.splice(HealthPowerUp[i],1)
+			lives++;
+			var temp = new Object("images/heart.png", 50, 0, 50, 50);
+			Health.push(temp);
+			
+		}
+	}
 	for(i=fallAwayBlock.length-1;i>=0;i--){
 		if(test.isCollBot(fallAwayBlock[i])){	
 			test.Y=fallAwayBlock[i].Y-test.H;
@@ -49,6 +58,7 @@ function Collision(){
 
 		}			
 	}
+	
 	for(i=0;i<iceBlock.length; i++){
 		if(test.isCollBot(iceBlock[i])){	
 			test.Y=iceBlock[i].Y-test.H;
@@ -177,8 +187,14 @@ if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) )
 		endDoor.X-=playerSpeed;
 		fire.X-=playerSpeed;
 		enemy.X-=playerSpeed;
+		for(i=0;i<newEnemy.length;i++){
+			newEnemy[i].X-=playerSpeed;
+		}
 		emerald.X-=0.5*playerSpeed;	
 		WASD.X-=playerSpeed;
+		for (i=0; i<HealthPowerUp.length; i++){
+			HealthPowerUp[i].X-=playerSpeed;
+		}
 		for(i=0; i<fakeGround.length; i++){	
 			fakeGround[i].X-=playerSpeed;
 		}
@@ -227,8 +243,14 @@ if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) )
 		endDoor.X+=playerSpeed;
 		fire.X+=playerSpeed;
 		enemy.X+=playerSpeed;
+		for(i=0;i<newEnemy.length;i++){
+			newEnemy[i].X+=playerSpeed;
+		}
 		WASD.X+=playerSpeed;
 		emerald.X+=0.5*playerSpeed;
+			for (i=0; i<HealthPowerUp.length; i++){
+			HealthPowerUp[i].X+=playerSpeed;
+		}
 		for(i=0; i<fakeGround.length; i++){	
 			fakeGround[i].X+=playerSpeed;
 		}
@@ -276,10 +298,16 @@ if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) )
 		endDoor.Y+=Math.abs(VelY);
 		fire.Y+=Math.abs(VelY);
 		enemy.Y+=Math.abs(VelY);
+		for(i=0;i<newEnemy.length;i++){
+			newEnemy[i].Y+=Math.abs(VelY);
+		}
 		WASD.Y+=Math.abs(VelY);
 		emerald.Y+=Math.abs(VelY);
 		for(i=0;i<ground.length; i++){
 			ground[i].Y +=Math.abs(VelY);		
+		}
+		for (i=0; i<HealthPowerUp.length; i++){
+			HealthPowerUp[i].X+=Math.abs(VelY);
 		}
 		for(i=0; i<fakeGround.length; i++){	
 			fakeGround[i].Y+=Math.abs(VelY);
@@ -324,8 +352,14 @@ if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) )
 			endDoor.Y-=Math.abs(VelY);
 			fire.Y-=Math.abs(VelY);
 			enemy.Y-=Math.abs(VelY);
+			for(i=0;i<newEnemy.length;i++){
+				newEnemy[i].Y-=Math.abs(VelY);
+			}
 			WASD.Y-=Math.abs(VelY);
 			emerald.Y-=Math.abs(VelY);
+			for (i=0; i<HealthPowerUp.length; i++){
+			HealthPowerUp[i].X-=Math.abs(VelY);
+		}
 			for(i=0; i<fakeGround.length; i++){	
 				fakeGround[i].Y-=Math.abs(VelY);
 			}

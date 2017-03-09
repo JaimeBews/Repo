@@ -1,13 +1,18 @@
 var bullet= new Array();
 
 
-function Shooter(){
+function Shooter(){//maybe make it so each shooter keeps tracks of its current bullet count
 	for (i=0;i<shooter.length;i++){
-		createBullet(shooter[i].X,shooter[i].Y);
+		shooter[i].xdist =test.X-shooter[i].X
+		shooter[i].ydist = test.Y-shooter[i].Y;
+		shooter[i].distance = Math.sqrt((shooter[i].xdist)*(shooter[i].xdist)+(shooter[i].ydist)*(shooter[i].ydist));
+	
+		if(shooter[i].distance<400&&bullet.length<10)
+			createBullet(shooter[i].X,shooter[i].Y);
 	}
 }
 function createBullet(shootX,shootY){
-	console.log("Happening");
+
 	
 	bullet.push(new Object("images/wasd.png",shootX,shootY,50,50));
 		CurrentBullet = bullet.length-1;
@@ -15,7 +20,7 @@ function createBullet(shootX,shootY){
 		bullet[CurrentBullet].ydist = test.Y-shootY;
 		bullet[CurrentBullet].distance = Math.sqrt(bullet[CurrentBullet].xdist*bullet[CurrentBullet].xdist + bullet[CurrentBullet].ydist*bullet[CurrentBullet].ydist);
 		bullet[CurrentBullet].Bspeed = bullet[CurrentBullet].distance/5;
-		bullet[CurrentBullet].lifespan=300;
+		bullet[CurrentBullet].lifespan=200;
 }
 function updateBullet(){
 	for(i=0;i<bullet.length;i++){

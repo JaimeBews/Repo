@@ -8,9 +8,7 @@ var flagLeft= true;
 var IceSpeed=2;
 var flying= false
 function player(){
-if(F){
-		Shooter();
-}
+
 	test.isCollRight= function(obj){
 				if (obj.X > this.X + this.W-30) return false;//objects left is further right than this's right side
 				if (obj.X + obj.W < this.X+this.W)return false//objects right side is further left than this's left side

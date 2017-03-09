@@ -168,9 +168,33 @@ function FireAnim(timestamp){
 	},1000/15)
 }
 	EnemyAnim();
+function StartAnimation(){
+		function NewEnemyAnim(timestamp){
+			setTimeout(function(){ //throttle requestAnimationFrame to 20fps
+				for(i=0;i<newEnemy.length;i++){
+					newEnemy[i].animRow+=329;
+					newEnemy[i].enemyCounter++;
+					if(newEnemy[i].enemyCounter ==10){
+						newEnemy[i].enemyResetCounter++;
+						newEnemy[i].enemyCounter =0;
+						newEnemy[i].animRow=0;
+						newEnemy[i].animCol+=241;
+					}
+					if (newEnemy[i].enemyResetCounter==3){
+						newEnemy[i].enemyResetCounter=0;
+						newEnemy[i].enemyCounter=0;
+						newEnemy[i].animRow=0;
+						newEnemy[i].animCol=0;
+					}
+				}
+					requestAnimationFrame(NewEnemyAnim)
+			},1000/15)
+		}
+
+		NewEnemyAnim();
 
 		//fire 65 width and 120 height
-		
+}
 		
 		
 		
