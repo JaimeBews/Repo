@@ -1,4 +1,5 @@
 var delayR = 0;
+var delayAR = 0;
 var delayL= 0;
 var delay=0;
 var animRow = 0;
@@ -11,7 +12,7 @@ var attacking = false;
 
 function Animate(){ //needs a if(D&&A)
 
-	if(D&&onground&&!attacking&&!A){
+	if(D&&!attacking&&!A){
 		animCol= 75;
 		delayR++;
 		animWidth= 50;
@@ -26,8 +27,7 @@ function Animate(){ //needs a if(D&&A)
 		}
 	}	
 
-
-	 if(A&&onground&&!attacking&&!D){
+	 if(A&&!attacking&&!D){
 
 		animCol= 0;
 		delayL++;
@@ -155,7 +155,7 @@ function FireAnim(timestamp){
 	var enemyCounter=0;
 	var enemyResetCounter =0;
 	function EnemyAnim(timestamp){
-	setTimeout(function(){ //throttle requestAnimationFrame to 20fps
+	setTimeout(function(){ 
 		enemy.animRow+=329;
 		enemyCounter++;
 		if(enemyCounter ==10){
@@ -176,7 +176,7 @@ function FireAnim(timestamp){
 	EnemyAnim();
 function StartAnimation(){
 		function NewEnemyAnim(timestamp){
-			setTimeout(function(){ //throttle requestAnimationFrame to 20fps
+			setTimeout(function(){ 
 				for(i=0;i<newEnemy.length;i++){
 					newEnemy[i].animRow+=329;
 					newEnemy[i].enemyCounter++;
