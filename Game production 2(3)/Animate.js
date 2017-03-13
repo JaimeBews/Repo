@@ -10,6 +10,7 @@ var recently_Attacked = false;
 var attacking = false;
 
 function Animate(){ //needs a if(D&&A)
+
 	if(D&&onground&&!attacking&&!A){
 		animCol= 75;
 		delayR++;
@@ -24,7 +25,10 @@ function Animate(){ //needs a if(D&&A)
 			counter= 0;
 		}
 	}	
+
+
 	 if(A&&onground&&!attacking&&!D){
+
 		animCol= 0;
 		delayL++;
 		animWidth= 50;
@@ -111,14 +115,14 @@ function Animate(){ //needs a if(D&&A)
 			}
 			
 		}
-	
+}	
 			
 	function AttackDelay(){
 		recently_Attacked = false;
 	}
 	//135H to 175H for attack left
 	//0to 50, 50 to 120 120 to 190 190 to 250
-}
+
 		//ctx.drawImage(test.Sprite,animRow,animCol,test.W,test.H, test.X, test.Y, test.W, test.H);
 		//method of drawing player
 

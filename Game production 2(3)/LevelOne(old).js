@@ -1,3 +1,41 @@
+<<<<<<< HEAD
+var ballDx;
+var ballDy;
+
+function Bossfight(){
+	ClearAllArrays();
+		test.X=500
+		test.Y=372
+		for (i=0; i<2; i++ ){
+				Paddle[i] = new Object ("images/grass_tile.png", 100, display.height -100,20,100);
+		}
+		for (i=0; i<40; i++ ){
+			ground[i] = new Object ("images/grass_tile.png", 100*i, display.height -100,100,100);
+		}
+		Paddle[0].X = 50;
+		Paddle[1].X = screen.width - 50;
+		Ball = new Object("images/grass_tile.png", 100, display.height -100,20,20);
+}
+function Boss(){
+	
+}
+function Ball(){
+	
+	if (Ball.X<=0)
+		ballDx= -ballDx;
+	if (ball.X>= screen.width;)
+		ballDx= -ballDx;
+	if (Ball.Y<=0)
+		ballDy= -ballDy;
+	if (ball.Y>= screen.height;)
+		ballDy= -ballDy;
+	updateBall();
+	
+}
+function updateBall(){
+	Ball.X+=ballDx;
+	Ball.Y +=ballDy;
+=======
 	
 	function Level_One(){
 		test.X=500
@@ -431,4 +469,5 @@
 		 ground[181].H=50
 		 
 		 
+>>>>>>> fbbdee394b7cf01a691c018732de241821d97539
 }

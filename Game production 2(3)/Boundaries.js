@@ -20,7 +20,7 @@ function BotScreen(temp){
 }
 
 function Boundaries(){
-if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) ){
+	if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce)&&!BossBattle ){
 		if(onIce &&!D){
 			playerSpeed=IceSpeed;
 		}
@@ -55,7 +55,8 @@ if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) )
 	
 	
 	
-	if ((!flagLeft)&&test.X<= 205&&!attacking&& (A|| onIce)){
+	if ((!flagLeft)&&test.X<= 205&&!attacking&& (A|| onIce)&&!BossBattle){
+
 		if(onIce&&!A){
 			playerSpeed=IceSpeed;
 		}

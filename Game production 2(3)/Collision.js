@@ -5,13 +5,21 @@ function Collision(){
 		Level_One();
 	}
 	
-	
-	if (test.X <= 205){
+
+	if (test.X <= 205&&!BossBattle){
 		test.X =205;
 	}
-	if (test.X >= display.width - test.W-200){
+	if (test.X >= display.width - test.W-200&&!BossBattle){
 		test.X =display.width-test.W-200;	
 	}
+	if (test.X >= display.width-test.W&&BossBattle){
+		test.X =display.width-test.W;
+	}
+	if (test.X <= 0&&BossBattle){
+		test.X =0;
+	}
+
+
 	if (test.Y<190){
 		test.Y =190;
 	}

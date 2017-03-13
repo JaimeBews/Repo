@@ -20,6 +20,10 @@ function Enemy(){
 	if(E_flagLeft&&enemy.X> test.X)
 		enemy.X-=E_Speed;
 	
+
+	if (Ball.isColl(test)&&hasnotbeenhit){
+			wasHit();
+		}
 	for(i=0;i<spikes.length;i++){
 		if(test.isCollBot(spikes[i])&&hasnotbeenhit){
 			wasHit();

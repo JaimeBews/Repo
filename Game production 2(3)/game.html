@@ -9,6 +9,8 @@
    <script language="javascript" type="text/javascript" src="Object.js"></script>
    <script language="javascript" type="text/javascript" src="Tutorial.js"></script>
    <script language="javascript" type="text/javascript" src="LevelOne.js"></script>
+
+   <script language="javascript" type="text/javascript" src="BossFight.js"></script>
    <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
    <script language="javascript" type="text/javascript" src="Enemy.js"></script>
    <script language="javascript" type="text/javascript" src="NewEnemy.js"></script>
@@ -28,6 +30,8 @@
 		
 		var gameover = false;
 		var mainmenu= true;
+
+		var BossBattle = false;
 		//var currentlevel=0; later use
 		
 		var fire = new Object("images/fire.png", 500, 200, 65, 120);
@@ -39,6 +43,11 @@
 		var ground = new Array();
 		var jumpwalls= new Array();	
 		var shooter = new Array();
+		var newEnemy = new Array();	
+		var Paddle = new Array();		
+		var GameOver = new Object("images/gameover.png",0,0,800,640);
+		
+
 		var newEnemy = new Array();		
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
 
@@ -48,8 +57,9 @@
 		var test = new Object("images/sprite12.png", 500, 372, 100, 100);	
 		var enemy = new Object("images/test_sheet.png", 500, 0, 70, 50);
 
+		var Ball = new Object("images/grass_tile.png", -50000, display.height -100,20,20);
 
-		
+
 		StartAnimation();
 		enemy.animCol=0;
 		enemy.animRow=0;
@@ -110,9 +120,12 @@
 				for(i=0; i<fallingSpikes.length; i++){	
 					ctx.drawImage(fallingSpikes[i].Sprite, fallingSpikes[i].X, fallingSpikes[i].Y,fallingSpikes[i].W,fallingSpikes[i].H);
 				}
-				
-			
-					
+
+				ctx.drawImage(Ball.Sprite, Ball.X, Ball.Y, Ball.W, Ball.H);
+				for(i=0; i<Paddle.length; i++){	
+					ctx.drawImage(Paddle[i].Sprite, Paddle[i].X, Paddle[i].Y,Paddle[i].W,Paddle[i].H);
+				}
+
 				for(i=0; i<ground.length; i++){	
 					ctx.drawImage(ground[i].Sprite, ground[i].X, ground[i].Y,ground[i].W,ground[i].H);			
 				}				
@@ -162,6 +175,12 @@
 				Animate();		
 				platFormX();
 				platformY();
+
+				if (BossBattle){
+					BallFunc();
+					Boss();
+				}
+
 			//	move();
 				updateBullet();
 				render();
