@@ -24,10 +24,30 @@
 	<canvas id="screen" width=800 height = 640></canvas>
 
 	<script>
-		var display = document.getElementById("screen");
-		var ctx = display.getContext('2d');		
+	
+		var display = document.getElementById("screen");		
+		var ctx = display.getContext('2d');	
+		
+		display.addEventListener("click", mouseClick);
+		function mouseClick(e){
+			var canvasMouseX = e.clientX - (display.offsetLeft - window.pageXOffset);
+			var canvasMouseY = e.clientY - (display.offsetTop - window.pageYOffset);
+			
+			if(p2rectCheck(canvasMouseX,canvasMouseY,StartButton.X,StartButton.Y,StartButton.W,StartButton.H)==0){
+				if (mainmenu){
+					mainmenu = false;
+					tutorial();
+				}
+			}
+		}		
+		function p2rectCheck (canvasMouseX, canvasMouseY, ButtonX, ButtonY, ButtonW, ButtonH)
+		{
+			var cx = Math.max(Math.min(canvasMouseX, ButtonX+ButtonW ), ButtonX);
+			var cy = Math.max(Math.min(canvasMouseY, ButtonY+ButtonH), ButtonY);
+			return Math.sqrt( (canvasMouseX-cx)*(canvasMouseX-cx) + (canvasMouseY-cy)*(canvasMouseY-cy) );
+		}
+		var StartButton = new Object("images/wasd.png",300,display.height-100,150,100);	
 		var backgroundIncrement = 2700;
-		// a test to insure my new computer can use the repo
 		var gameover = false;
 		var mainmenu= true;
 
@@ -75,17 +95,12 @@
 			Health[i] = new Object("images/heart.png", 50, 0, 50, 50);
 		}
 		
-			
-		function MainMenu(){
-			if(G){
-				mainmenu=false;
-				tutorial();
-				}
-		}
+	
 	
 		function render(){
 		if(mainmenu){	
 			ctx.drawImage(Menu.Sprite, Menu.X, Menu.Y, Menu.W, Menu.H);
+			ctx.drawImage(StartButton.Sprite, StartButton.X, StartButton.Y, StartButton.W, StartButton.H);
 			}
 			else if(gameover){
 				ctx.drawImage(GameOver.Sprite, GameOver.X, GameOver.Y, GameOver.W, GameOver.H);
@@ -166,7 +181,7 @@
 		if(mainmenu){
 			render();
 			setTimeout(Main,1000/60);
-			MainMenu();
+
 			}else{
 				player();				
 				Enemy();
