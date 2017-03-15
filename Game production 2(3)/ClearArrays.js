@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function ClearAllArrays(){
 	ground.length = 0;
 	platform.length = 0;
@@ -16,4 +17,22 @@ function ClearAllArrays(){
 	WASD.X=-33332;
 	fire.X=-33333
 	//newEnemy = 0;
+=======
+function ClearAllArrays(){
+	ground.length = 0;
+	platform.length = 0;
+	platformX.length = 0;
+	fallingSpikes.length = 0;
+	fakeGround.length = 0;
+	jumpwalls.length = 0;
+	spikes.length = 0;
+	fallAwayBlock.length = 0;
+	iceBlock.length = 0;
+	shooter.length = 0;
+	newEnemy.length = 0;
+	HealthPowerUp.length = 0;
+	WASD.X=-33332;
+
+	//newEnemy = 0;
+>>>>>>> origin/master
 }//we never deleted the objects !!!!!!!! memory leak

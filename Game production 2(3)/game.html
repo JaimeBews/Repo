@@ -9,8 +9,12 @@
    <script language="javascript" type="text/javascript" src="Object.js"></script>
    <script language="javascript" type="text/javascript" src="Tutorial.js"></script>
    <script language="javascript" type="text/javascript" src="LevelOne.js"></script>
+<<<<<<< HEAD
 	<script language="javascript" type="text/javascript" src="Level1-1.js"></script>
 	<script language="javascript" type="text/javascript" src="Presentation.js"></script>
+=======
+
+>>>>>>> origin/master
    <script language="javascript" type="text/javascript" src="BossFight.js"></script>
    <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
    <script language="javascript" type="text/javascript" src="Enemy.js"></script>
@@ -25,6 +29,7 @@
 	<canvas id="screen" width=800 height = 640></canvas>
 
 	<script>
+<<<<<<< HEAD
 	var VFX_Button = new Audio("Sounds/ButtonClick.wav");
 	var VFX_SpikeHit = new Audio("Sounds/GettingHit2.mp3");
 	var VFX_NormalHit = new Audio ("Sounds/GettingHit.wav");
@@ -57,6 +62,31 @@
 		
 		
 		var StartButton = new Object("images/start.png",display.width/2-80,display.height/2-30,150,100);	
+=======
+	
+		var display = document.getElementById("screen");		
+		var ctx = display.getContext('2d');	
+		
+		display.addEventListener("click", mouseClick);
+		function mouseClick(e){
+			var canvasMouseX = e.clientX - (display.offsetLeft - window.pageXOffset);
+			var canvasMouseY = e.clientY - (display.offsetTop - window.pageYOffset);
+			
+			if(p2rectCheck(canvasMouseX,canvasMouseY,StartButton.X,StartButton.Y,StartButton.W,StartButton.H)==0){
+				if (mainmenu){
+					mainmenu = false;
+					tutorial();
+				}
+			}
+		}		
+		function p2rectCheck (canvasMouseX, canvasMouseY, ButtonX, ButtonY, ButtonW, ButtonH)
+		{
+			var cx = Math.max(Math.min(canvasMouseX, ButtonX+ButtonW ), ButtonX);
+			var cy = Math.max(Math.min(canvasMouseY, ButtonY+ButtonH), ButtonY);
+			return Math.sqrt( (canvasMouseX-cx)*(canvasMouseX-cx) + (canvasMouseY-cy)*(canvasMouseY-cy) );
+		}
+		var StartButton = new Object("images/wasd.png",300,display.height-100,150,100);	
+>>>>>>> origin/master
 		var backgroundIncrement = 2700;
 		var gameover = false;
 		var mainmenu= true;

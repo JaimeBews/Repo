@@ -12,6 +12,7 @@ function Bossfight(){
 		test.X=500
 		test.Y=372
 		for (i=0; i<2; i++ ){
+<<<<<<< HEAD
 			Paddle[i] = new Object ("images/BossProtected.png", 100, display.height -250,20,100);
 			Paddle[i].Vulnerable = false;
 		}
@@ -21,6 +22,17 @@ function Bossfight(){
 		Paddle[0].X = 50;
 		Paddle[1].X = display.width - 50;
 		Ball = new Object("images/BossBall.png", Math.floor(Math.random() * 250+300) , display.height/2,20,20);
+=======
+			Paddle[i] = new Object ("images/grass_tile.png", 100, display.height -250,20,100);
+			Paddle[i].Vulnerable = false;
+		}
+		for (i=0; i<40; i++ ){
+			ground[i] = new Object ("images/grass_tile.png", 100*i, display.height -100,100,100);
+		}
+		Paddle[0].X = 50;
+		Paddle[1].X = display.width - 50;
+		Ball = new Object("images/grass_tile.png", Math.floor(Math.random() * 250+300) , display.height/2,20,20);
+>>>>>>> origin/master
 }
 function Boss(){
 	if(bossHealth ==0){
@@ -42,9 +54,15 @@ function Boss(){
 			Paddle[randomVulnerable].Vulnerable = true;
 		}
 		if (Paddle[i].Vulnerable)
+<<<<<<< HEAD
 			Paddle[i].Sprite.src="images/BossExposed.png";
 		else 
 			Paddle[i].Sprite.src="images/BossProtected.png";
+=======
+			Paddle[i].Sprite.src="images/LevelOne/L1Background.png";
+		else 
+			Paddle[i].Sprite.src="images/grass_tile.png";
+>>>>>>> origin/master
 		if(test.isColl(Paddle[i])&&attacking&&Paddle[i].Vulnerable&&!bossInvincibility){
 			bossHealth--;
 			Paddle[i].Vulnerable = false;
