@@ -8,5 +8,12 @@ function ClearAllArrays(){
 	spikes.length = 0;
 	fallAwayBlock.length = 0;
 	iceBlock.length = 0;
+	shooter.length = 0;
+	newEnemy.length = 0;
+	HealthPowerUp.length = 0;
+	endDoor.X=33333;
+	ExtraDoor.X=33333;
+	WASD.X=-33332;
+	fire.X=-33333
 	//newEnemy = 0;
 }//we never deleted the objects !!!!!!!! memory leak

@@ -20,8 +20,14 @@ function Enemy(){
 	if(E_flagLeft&&enemy.X> test.X)
 		enemy.X-=E_Speed;
 	
+
+	if (Ball.isColl(test)&&hasnotbeenhit){
+			wasHit();
+		}
 	for(i=0;i<spikes.length;i++){
 		if(test.isCollBot(spikes[i])&&hasnotbeenhit){
+			VFX_SpikeHit.volume = 0.5;			
+			VFX_SpikeHit.play();
 			wasHit();
 		}
 	}
@@ -34,6 +40,8 @@ function Enemy(){
 	wasHit();
 	}
 	function wasHit(){
+		VFX_NormalHit.volume = 0.5;			
+		VFX_NormalHit.play();
 		lives-=1;
 		hasnotbeenhit = false;
 		setTimeout(resetHit,1500)

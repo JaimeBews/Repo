@@ -9,6 +9,9 @@
    <script language="javascript" type="text/javascript" src="Object.js"></script>
    <script language="javascript" type="text/javascript" src="Tutorial.js"></script>
    <script language="javascript" type="text/javascript" src="LevelOne.js"></script>
+	<script language="javascript" type="text/javascript" src="Level1-1.js"></script>
+	<script language="javascript" type="text/javascript" src="Presentation.js"></script>
+   <script language="javascript" type="text/javascript" src="BossFight.js"></script>
    <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
    <script language="javascript" type="text/javascript" src="Enemy.js"></script>
    <script language="javascript" type="text/javascript" src="NewEnemy.js"></script>
@@ -22,12 +25,43 @@
 	<canvas id="screen" width=800 height = 640></canvas>
 
 	<script>
-		var display = document.getElementById("screen");
-		var ctx = display.getContext('2d');		
-		var backgroundIncrement = 2700;
+	var VFX_Button = new Audio("Sounds/ButtonClick.wav");
+	var VFX_SpikeHit = new Audio("Sounds/GettingHit2.mp3");
+	var VFX_NormalHit = new Audio ("Sounds/GettingHit.wav");
+	var VFX_MainMenu = new Audio ("Sounds/MainMenu.mp3");
 		
+		var display = document.getElementById("screen");		
+		var ctx = display.getContext('2d');	
+		
+		display.addEventListener("click", mouseClick);
+		function mouseClick(e){
+			var canvasMouseX = e.clientX - (display.offsetLeft - window.pageXOffset);
+			var canvasMouseY = e.clientY - (display.offsetTop - window.pageYOffset);
+			
+			if(p2rectCheck(canvasMouseX,canvasMouseY,StartButton.X,StartButton.Y,StartButton.W,StartButton.H)==0){
+				VFX_MainMenu.pause();
+				VFX_Button.volume = 0.5;			
+				VFX_Button.play();
+				if (mainmenu){
+					mainmenu = false;
+					tutorial();
+				}
+			}
+		}		
+		function p2rectCheck (canvasMouseX, canvasMouseY, ButtonX, ButtonY, ButtonW, ButtonH)
+		{
+			var cx = Math.max(Math.min(canvasMouseX, ButtonX+ButtonW ), ButtonX);
+			var cy = Math.max(Math.min(canvasMouseY, ButtonY+ButtonH), ButtonY);
+			return Math.sqrt( (canvasMouseX-cx)*(canvasMouseX-cx) + (canvasMouseY-cy)*(canvasMouseY-cy) );
+		}
+		
+		
+		var StartButton = new Object("images/start.png",display.width/2-80,display.height/2-30,150,100);	
+		var backgroundIncrement = 2700;
 		var gameover = false;
 		var mainmenu= true;
+
+		var BossBattle = false;
 		//var currentlevel=0; later use
 		
 		var fire = new Object("images/fire.png", 500, 200, 65, 120);
@@ -39,17 +73,23 @@
 		var ground = new Array();
 		var jumpwalls= new Array();	
 		var shooter = new Array();
+		var newEnemy = new Array();	
+		var Paddle = new Array();		
+		var GameOver = new Object("images/gameover.png",0,0,800,640);
+		
+
 		var newEnemy = new Array();		
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
 
-		var Menu= new Object("images/Mainmenu.png",0,0,800,640);		
+		var Menu= new Object("images/main_menu.png",0,0,800,640);		
 		var WASD= new Object("images/wasd.png",300,220,150,100);		
 		var emerald = new Object("images/LevelTutorial/TutBackground.png", 0, 0, backgroundIncrement, 640);		
-		var test = new Object("images/sprite12.png", 500, 372, 100, 100);	
+		var test = new Object("images/spritePlayer.png", 500, 372, 100, 100);	
 		var enemy = new Object("images/test_sheet.png", 500, 0, 70, 50);
 
+		var Ball = new Object("images/grass_tile.png", -50000, display.height -100,20,20);
 
-		
+
 		StartAnimation();
 		enemy.animCol=0;
 		enemy.animRow=0;
@@ -57,7 +97,9 @@
 		enemy.animWidth=329;	
 		var spikes = new Array();
 		var fallingSpikes = new Array();
+
 		var endDoor = new Object("images/enddoor.png", 8700, 2372, 300, 300);
+		var ExtraDoor = new Object("images/enddoor.png", 8700, 2372, 300, 300);
 		var fakeGround = new Array();
 			
 		var Health = new Array();
@@ -65,17 +107,12 @@
 			Health[i] = new Object("images/heart.png", 50, 0, 50, 50);
 		}
 		
-			
-		function MainMenu(){
-			if(G){
-				mainmenu=false;
-				tutorial();
-				}
-		}
+	
 	
 		function render(){
 		if(mainmenu){	
 			ctx.drawImage(Menu.Sprite, Menu.X, Menu.Y, Menu.W, Menu.H);
+			ctx.drawImage(StartButton.Sprite, StartButton.X, StartButton.Y, StartButton.W, StartButton.H);
 			}
 			else if(gameover){
 				ctx.drawImage(GameOver.Sprite, GameOver.X, GameOver.Y, GameOver.W, GameOver.H);
@@ -98,6 +135,8 @@
 					ctx.drawImage(shooter[i].Sprite, shooter[i].X, shooter[i].Y,shooter[i].W,shooter[i].H);
 				}
 				ctx.drawImage(endDoor.Sprite, endDoor.X, endDoor.Y, endDoor.W, endDoor.H);
+				ctx.drawImage(ExtraDoor.Sprite, ExtraDoor.X, ExtraDoor.Y, ExtraDoor.W, ExtraDoor.H);
+
 				for(i=0; i<fakeGround.length; i++){	
 					ctx.drawImage(fakeGround[i].Sprite, fakeGround[i].X, fakeGround[i].Y,fakeGround[i].W,fakeGround[i].H);			
 				}
@@ -110,9 +149,12 @@
 				for(i=0; i<fallingSpikes.length; i++){	
 					ctx.drawImage(fallingSpikes[i].Sprite, fallingSpikes[i].X, fallingSpikes[i].Y,fallingSpikes[i].W,fallingSpikes[i].H);
 				}
-				
-			
-					
+
+				ctx.drawImage(Ball.Sprite, Ball.X, Ball.Y, Ball.W, Ball.H);
+				for(i=0; i<Paddle.length; i++){	
+					ctx.drawImage(Paddle[i].Sprite, Paddle[i].X, Paddle[i].Y,Paddle[i].W,Paddle[i].H);
+				}
+
 				for(i=0; i<ground.length; i++){	
 					ctx.drawImage(ground[i].Sprite, ground[i].X, ground[i].Y,ground[i].W,ground[i].H);			
 				}				
@@ -151,9 +193,12 @@
 		
 		function Main(){
 		if(mainmenu){
+			VFX_MainMenu.volume = 0.5;
+			VFX_MainMenu.play();
+			
 			render();
 			setTimeout(Main,1000/60);
-			MainMenu();
+
 			}else{
 				player();				
 				Enemy();
@@ -162,6 +207,12 @@
 				Animate();		
 				platFormX();
 				platformY();
+
+				if (BossBattle){
+					BallFunc();
+					Boss();
+				}
+
 			//	move();
 				updateBullet();
 				render();

@@ -1,15 +1,17 @@
 
 	function tutorial(){
+		ClearAllArrays();
+		WASD.X=300;
 		var sound = new Audio("Sounds/BackgroundMusic1.mp3");
-		sound.volume = 0.5;
+		sound.volume = 0.1;
 		sound.loop=true;
 		sound.play();
 		test.X=500
 		test.Y=372
 		enemy.X=8300;
 		enemy.Y=300;
-		endDoor.X=8300;
-		endDoor.Y= -2372;
+		endDoor.X=1000;
+		endDoor.Y= display.height-500;
 		
 		for (i=0;i<10;i++){
 			newEnemy[i] = new Object("images/test_sheet.png", 500+50*i, 350, 70, 50);

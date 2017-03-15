@@ -1,17 +1,30 @@
+var level = 0
 function Collision(){
 	powerUp();
 		
-	if(test.isColl(endDoor)){
-		Level_One();
+	if(test.isColl(endDoor)&& level == 0){
+		level++
+		Level_two();
 	}
-	
-	
-	if (test.X <= 205){
+	if((test.isColl(endDoor)||test.isColl(ExtraDoor))&& level == 1){
+		level++
+		Bossfight();
+	}
+
+	if (test.X <= 205&&!BossBattle){
 		test.X =205;
 	}
-	if (test.X >= display.width - test.W-200){
+	if (test.X >= display.width - test.W-200&&!BossBattle){
 		test.X =display.width-test.W-200;	
 	}
+	if (test.X >= display.width-test.W&&BossBattle){
+		test.X =display.width-test.W;
+	}
+	if (test.X <= 0&&BossBattle){
+		test.X =0;
+	}
+
+
 	if (test.Y<190){
 		test.Y =190;
 	}

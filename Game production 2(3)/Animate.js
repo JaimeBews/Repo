@@ -1,4 +1,5 @@
 var delayR = 0;
+var delayAR = 0;
 var delayL= 0;
 var delay=0;
 var animRow = 0;
@@ -10,7 +11,8 @@ var recently_Attacked = false;
 var attacking = false;
 
 function Animate(){ //needs a if(D&&A)
-	if(D&&onground&&!attacking&&!A){
+
+	if(D&&!attacking&&!A){
 		animCol= 75;
 		delayR++;
 		animWidth= 50;
@@ -24,7 +26,9 @@ function Animate(){ //needs a if(D&&A)
 			counter= 0;
 		}
 	}	
-	 if(A&&onground&&!attacking&&!D){
+
+	 if(A&&!attacking&&!D){
+
 		animCol= 0;
 		delayL++;
 		animWidth= 50;
@@ -39,6 +43,7 @@ function Animate(){ //needs a if(D&&A)
 		}
 	}
 	if(T&&onground&&!recently_Attacked){
+
 		recently_Attacked=true;
 		attacking = true;
 		setTimeout(AttackDelay,2000);
@@ -111,14 +116,14 @@ function Animate(){ //needs a if(D&&A)
 			}
 			
 		}
-	
+}	
 			
 	function AttackDelay(){
 		recently_Attacked = false;
 	}
 	//135H to 175H for attack left
 	//0to 50, 50 to 120 120 to 190 190 to 250
-}
+
 		//ctx.drawImage(test.Sprite,animRow,animCol,test.W,test.H, test.X, test.Y, test.W, test.H);
 		//method of drawing player
 
@@ -151,7 +156,7 @@ function FireAnim(timestamp){
 	var enemyCounter=0;
 	var enemyResetCounter =0;
 	function EnemyAnim(timestamp){
-	setTimeout(function(){ //throttle requestAnimationFrame to 20fps
+	setTimeout(function(){ 
 		enemy.animRow+=329;
 		enemyCounter++;
 		if(enemyCounter ==10){
@@ -172,7 +177,7 @@ function FireAnim(timestamp){
 	EnemyAnim();
 function StartAnimation(){
 		function NewEnemyAnim(timestamp){
-			setTimeout(function(){ //throttle requestAnimationFrame to 20fps
+			setTimeout(function(){ 
 				for(i=0;i<newEnemy.length;i++){
 					newEnemy[i].animRow+=329;
 					newEnemy[i].enemyCounter++;

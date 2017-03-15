@@ -20,18 +20,18 @@ function BotScreen(temp){
 }
 
 function Boundaries(){
-if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) ){
+	if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce)&&!BossBattle ){
 		if(onIce &&!D){
 			playerSpeed=IceSpeed;
 		}
 
 		PlatformStart-=playerSpeed;		
 		endDoor.X-=playerSpeed;
+		ExtraDoor.X-=playerSpeed;
 		fire.X-=playerSpeed;
 		enemy.X-=playerSpeed;
 		emerald.X-=0.5*playerSpeed;	
 		WASD.X-=playerSpeed;	
-		
 		RightScreen(newEnemy);
 		RightScreen(HealthPowerUp);
 		RightScreen(fakeGround);
@@ -55,12 +55,14 @@ if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) )
 	
 	
 	
-	if ((!flagLeft)&&test.X<= 205&&!attacking&& (A|| onIce)){
+	if ((!flagLeft)&&test.X<= 205&&!attacking&& (A|| onIce)&&!BossBattle){
+
 		if(onIce&&!A){
 			playerSpeed=IceSpeed;
 		}
 		PlatformStart+=playerSpeed;
 		endDoor.X+=playerSpeed;
+		ExtraDoor.X+=playerSpeed;
 		fire.X+=playerSpeed;
 		enemy.X+=playerSpeed;
 		WASD.X+=playerSpeed;
@@ -93,6 +95,7 @@ if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) )
 		
 		PlatformStartY+=Math.abs(VelY);
 		endDoor.Y+=Math.abs(VelY);
+		ExtraDoor.Y+=Math.abs(VelY);
 		fire.Y+=Math.abs(VelY);
 		enemy.Y+=Math.abs(VelY);
 		WASD.Y+=Math.abs(VelY);
@@ -127,6 +130,7 @@ if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce) )
 			
 			PlatformStartY-=Math.abs(VelY);		
 			endDoor.Y-=Math.abs(VelY);
+			ExtraDoor.Y-=Math.abs(VelY);
 			fire.Y-=Math.abs(VelY);
 			enemy.Y-=Math.abs(VelY);			
 			WASD.Y-=Math.abs(VelY);

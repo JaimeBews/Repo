@@ -141,7 +141,7 @@ function player(){
 		gameover= true;
 		lives = 3;
 	}
-		if(attacking&&test.isColl(enemy)){
+		if(attacking&&test.isColl(enemy)&&level == 0){
 				enemy.X-=20000;
 				endDoor.Y = 272;
 		}

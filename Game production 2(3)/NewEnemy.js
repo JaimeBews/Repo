@@ -30,8 +30,9 @@ function NewEnemyfunc(){
 			newEnemy[i].X-=E_Speed;
 		}
 	}
-
 	function wasHit(){
+		VFX_NormalHit.volume = 0.5;			
+		VFX_NormalHit.play();
 		lives-=1;
 		hasnotbeenhit = false;
 		setTimeout(resetHit,1500)
@@ -39,6 +40,7 @@ function NewEnemyfunc(){
 	function resetHit(){
 		hasnotbeenhit=true;
 	}
+	
 }
 function NewE_Collision(){
 	for(j=0;j<newEnemy.length;j++){
