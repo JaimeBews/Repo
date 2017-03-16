@@ -13,12 +13,18 @@
 		test.Y=372
 		enemy.X=8000;
 		enemy.Y=500;
-		
-		
+		emerald.Sprite.src="images/LevelOne/L1Background.png";
+		emerald.H=1900;
+		emerald.X=0;
+		emerald.Y=0;
+		VFX_Background2.play();
 		endDoor.X=5400;
 		endDoor.Y= display.height+900;
 		ExtraDoor.X=5200;
 		ExtraDoor.Y= +900;
+		for(i=0;i<1;i++){
+			HealthPowerUp[i] = new Object("images/Asset/healthupgrade.png",4400,-600,50,50);
+		}
 		for (i=0; i<350; i++ ){
 			ground[i] = new Object ("images/grass_tile.png", 100*i, display.height -100,100,100);
 		}
@@ -396,7 +402,6 @@
 		 ground[110].X=900;
 		 ground[110].Y=display.height- -400;
 		 ground[111].X=1000;
-		  ground[111].Sprite.src="images/LevelOne/L1Background.png";
 		 ground[111].Y=display.height- -400;
 		 ground[112].X=1100;
 		 ground[112].Y=display.height- -400;

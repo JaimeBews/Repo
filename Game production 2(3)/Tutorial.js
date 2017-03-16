@@ -2,18 +2,16 @@
 	function tutorial(){
 		ClearAllArrays();
 		WASD.X=300;
-		var sound = new Audio("Sounds/BackgroundMusic1.mp3");
-		sound.volume = 0.1;
-		sound.loop=true;
+		
 		sound.play();
 		test.X=500
 		test.Y=372
 		enemy.X=8300;
 		enemy.Y=300;
-		endDoor.X=1000;
-		endDoor.Y= display.height-500;
+		endDoor.X=8300;
+		endDoor.Y= -2372;
 		
-		for (i=0;i<10;i++){
+		/* for (i=0;i<10;i++){
 			newEnemy[i] = new Object("images/test_sheet.png", 500+50*i, 350, 70, 50);
 			newEnemy[i].animCol=0;
 			newEnemy[i].animRow=0;
@@ -22,18 +20,18 @@
 			newEnemy[i].E_VelY=0;
 			newEnemy[i].enemyCounter=0;
 			newEnemy[i].enemyResetCounter =0;
-		}
+		} */
 		
-		for(i=0;i<3;i++){
-			HealthPowerUp[i] = new Object("images/wasd.png",500+50*i,300,50,50);
-		}
+		/* for(i=0;i<3;i++){
+			HealthPowerUp[i] = new Object("images/Asset/healthupgrade.png",500+50*i,300,50,50);
+		} */
 		for (i=0; i<250; i++ ){
 			ground[i] = new Object ("images/LevelTutorial/TutGrass.png", 100*i, display.height -100,100,100);
 		}
-			for (i=0;i<2;i++){
+		/*  	for (i=0;i<2;i++){
 			shooter[i] = new Object("images/test.png",500,300,100,100)
-		}
-		shooter[1].X=300;
+		} 
+		shooter[1].X=300; */
 		for(i=0; i<5; i++){
 			platform[i] = new Object ("images/LevelTutorial/TutPlatform.png",999,999,64,64);
 			platform[i].MaxArray =true;
@@ -61,9 +59,9 @@
 			fallAwayBlock[i] = new Object ("images/grass_tile.png", 500+100*i, display.height -250,100,100);
 			fallAwayBlock[i].toBeDeleted= false;
 		}*/
-		for (i=0; i<4; i++ ){
+		/* for (i=0; i<4; i++ ){
 			iceBlock[i] = new Object ("images/icetile3.png", 800+100*i, display.height- 300,100,100);
-		}
+		} */
 	ground[220].Y=500;
 	//var indexj = 0;
 	/*for(j=220;j<250;j++){

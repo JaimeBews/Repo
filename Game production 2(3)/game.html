@@ -29,6 +29,23 @@
 	var VFX_SpikeHit = new Audio("Sounds/GettingHit2.mp3");
 	var VFX_NormalHit = new Audio ("Sounds/GettingHit.wav");
 	var VFX_MainMenu = new Audio ("Sounds/MainMenu.mp3");
+	var sound = new Audio("Sounds/BackgroundMusic1.mp3");
+		sound.volume = 0.1;
+		sound.loop=true;
+	var VFX_Background2 = new Audio("Sounds/BackgroundMusic2.mp3");
+		VFX_Background2.volume = 0.1;
+		VFX_Background2.loop=true;	
+	var VFX_Background3 = new Audio("Sounds/BackgroundMusic3.mp3");
+		VFX_Background2.volume = 0.1;
+		VFX_Background2.loop=true;	
+	var VFX_Pong = new Audio("Sounds/Pong.wav");
+	var VFX_Sword = new Audio("Sounds/SwordSwing5.wav");
+	var VFX_Turret = new Audio("Sounds/Turret.wav");
+	VFX_Turret.volume=0.3;
+	var VFX_JumpLanded = new Audio("Sounds/JumpLanded.wav");
+	var VFX_Boss_Music = new Audio("Sounds/BossTheme1.mp3");
+		VFX_Boss_Music.volume = 0.1;
+		VFX_Boss_Music.loop=true;	
 		
 		var display = document.getElementById("screen");		
 		var ctx = display.getContext('2d');	

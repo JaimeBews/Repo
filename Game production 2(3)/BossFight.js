@@ -8,19 +8,25 @@ var bossInvincibility= false;
 var bossHealth = 10;
 function Bossfight(){
 	ClearAllArrays();
+	emerald.Sprite.src="images/BossArea/BossBackground.png";
+	emerald.W = display.width;
+	emerald.H = display.height;
+	VFX_Boss_Music.play();
+	emerald.X=0;
+	emerald.Y=0;
 	BossBattle = true;
 		test.X=500
 		test.Y=372
 		for (i=0; i<2; i++ ){
-			Paddle[i] = new Object ("images/BossProtected.png", 100, display.height -250,20,100);
+			Paddle[i] = new Object ("images/BossArea/PongNormal.png", 100, display.height -250,20,100);
 			Paddle[i].Vulnerable = false;
 		}
 		for (i=0; i<40; i++ ){
-			ground[i] = new Object ("images/BossGround.png", 100*i, display.height -100,100,100);
+			ground[i] = new Object ("images/BossArea/BossPlatform.png", 100*i, display.height -100,100,100);
 		}
 		Paddle[0].X = 50;
 		Paddle[1].X = display.width - 50;
-		Ball = new Object("images/BossBall.png", Math.floor(Math.random() * 250+300) , display.height/2,20,20);
+		Ball = new Object("images/BossArea/PongBall.png", Math.floor(Math.random() * 250+300) , display.height/2,20,20);
 }
 function Boss(){
 	if(bossHealth ==0){
@@ -42,10 +48,11 @@ function Boss(){
 			Paddle[randomVulnerable].Vulnerable = true;
 		}
 		if (Paddle[i].Vulnerable)
-			Paddle[i].Sprite.src="images/BossExposed.png";
+			Paddle[i].Sprite.src="images/BossArea/PongExposed.png";
 		else 
-			Paddle[i].Sprite.src="images/BossProtected.png";
+			Paddle[i].Sprite.src="images/BossArea/PongNormal.png";
 		if(test.isColl(Paddle[i])&&attacking&&Paddle[i].Vulnerable&&!bossInvincibility){
+			VFX_Pong.play();
 			bossHealth--;
 			Paddle[i].Vulnerable = false;
 			bossInvincibility = true

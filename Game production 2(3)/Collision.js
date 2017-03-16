@@ -4,10 +4,12 @@ function Collision(){
 		
 	if(test.isColl(endDoor)&& level == 0){
 		level++
+		sound.pause();
 		Level_two();
 	}
 	if((test.isColl(endDoor)||test.isColl(ExtraDoor))&& level == 1){
 		level++
+		VFX_Background2.pause();
 		Bossfight();
 	}
 

@@ -1,10 +1,7 @@
 
 function Presentation(){
 	ClearAllArrays();
-	var sound = new Audio("Sounds/BackgroundMusic1.mp3");
-	sound.volume = 0.1;
-	sound.loop=true;
-	sound.play();
+	sound.pause();
 	test.X=500
 	test.Y=372
 	enemy.X=8300;
@@ -24,7 +21,7 @@ function Presentation(){
 	}
 	
 	for(i=0;i<3;i++){
-		HealthPowerUp[i] = new Object("images/wasd.png",2500+200*i,300,50,50);
+		HealthPowerUp[i] = new Object("images/Asset/healthupgrade.png",2500+200*i,300,50,50);
 	}
 	for (i=0; i<250; i++ ){
 		ground[i] = new Object ("images/LevelTutorial/TutGrass.png", 300+100*i, display.height -100,100,100);
