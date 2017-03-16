@@ -2,6 +2,7 @@
 function Presentation(){
 	ClearAllArrays();
 	sound.pause();
+	GroundBarrier.Y=display.height
 	test.X=500
 	test.Y=372
 	enemy.X=8300;
@@ -19,15 +20,23 @@ function Presentation(){
 		newEnemy[i].enemyCounter=0;
 		newEnemy[i].enemyResetCounter =0;
 	}
-	
+	for(i=0;i<2;i++){
+			fire[i] = new Object("images/fire.png", 500+100*i, 100, 65, 120);
+			fire[i].animCol=0;
+			fire[i].animRow=0;
+			fire[i].animHeight=120;
+			fire[i].animWidth=65;	
+			fire[i].fireCounter=0;
+			fire[i].fireResetCounter=0;
+		}
 	for(i=0;i<3;i++){
-		HealthPowerUp[i] = new Object("images/Asset/healthupgrade.png",2500+200*i,300,50,50);
+		HealthPowerUp[i] = new Object("images/PowerupHealth.png",2500+200*i,300,50,50);
 	}
 	for (i=0; i<250; i++ ){
-		ground[i] = new Object ("images/LevelTutorial/TutGrass.png", 300+100*i, display.height -100,100,100);
+		ground[i] = new Object ("images/LevelTutorial/TutGrass.png", 100*i, display.height -100,100,100);
 	}
 		for (i=0;i<1;i++){
-		shooter[i] = new Object("images/test.png",500,300,100,100)
+		shooter[i] = new Object("images/Asset/turret.png",500,300,100,100)
 	}
 	for(i=0; i<5; i++){
 		platform[i] = new Object ("images/LevelTutorial/TutPlatform.png",999,999,64,64);
@@ -44,10 +53,10 @@ function Presentation(){
 		fallingSpikes[i].falling = false;
 	}
 	for(i=0;i<3;i++){
-		fakeGround[i] = new Object("images/LevelTutorial/TutGrass.png",0+100*i,display.height -100,100,100);
+		fakeGround[i] = new Object("images/LevelTutorial/TutGrass.png",1000,display.height -100-100*i,100,100);
 	}
-	for(i=0;i<2;i++){
-		jumpwalls[i] = new Object("images/LevelTutorial/TutGrass.png",0,320-100*i,100,100)
+	for(i=0;i<3;i++){
+		jumpwalls[i] = new Object("images/LevelTutorial/TutGrass.png",0,420-100*i,100,100)
 	}
 	for(i=0;i<5;i++){
 		spikes[i] = new Object("images/LevelTutorial/TutSpike.png",3100+i*75,490,50,50);
@@ -56,13 +65,11 @@ function Presentation(){
 		fallAwayBlock[i] = new Object ("images/grass_tile.png", 1800+100*i, display.height -200,100,100);
 		fallAwayBlock[i].toBeDeleted= false;
 	}
-	for (i=0; i<20; i++ ){
-		iceBlock[i] = new Object ("images/icetile3.png", 800+100*i, display.height -100,100,100);
+	for (i=0; i<15; i++ ){
+		iceBlock[i] = new Object ("images/icetile3.png",1200+100*i, display.height -100,100,100);
 		
 	}
-	ground[18].Y=-1000	
-	ground[19].Y=-1000
-	ground[20].Y=-1000
+
 	
 	iceBlock[10].Y=-1000
 	iceBlock[11].Y=-1000

@@ -30,7 +30,7 @@ function updateBullet(){
 		bullet[i].Y +=bullet[i].ydist/bullet[i].Bspeed;
 		bullet[i].lifespan --;
 		if (bullet[i].lifespan<=0){
-			bullet.splice(bullet[i],1)
+			bullet.splice(i,1)
 		}
 	}
 }

@@ -14,7 +14,7 @@ function ClearAllArrays(){
 	endDoor.X=33333;
 	ExtraDoor.X=33333;
 	WASD.X=-33332;
-	fire.X=-33333
+	fire.length=0;
 	
 	//newEnemy = 0;
 }//we never deleted the objects !!!!!!!! memory leak

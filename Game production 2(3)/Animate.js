@@ -57,24 +57,24 @@ function Animate(){ //needs a if(D&&A)
 			delay++;
 			
 			if(delay > 5){
-				animWidth=50;
+				animWidth=75;
 				counter++;
-				animRow= 20;	//50
+				animRow= 20;	//225
 			}
 			if(delay > 10){
 				animWidth=75;
 				counter++;
-				animRow= 75;	//70
+				animRow= 75;	//150
 			}
 			if(delay > 15){
 				animWidth=75;
 				counter++;
-				animRow= 150;	//70
+				animRow= 150;	//75
 			}
 			if(delay >= 20){
 				animWidth=75;
 				counter++;
-				animRow= 225;	//60
+				animRow= 225;	//20
 				delay = 0;
 				animCol= 0;
 				animWidth= 50;
@@ -130,23 +130,24 @@ function Animate(){ //needs a if(D&&A)
 		
 		
 		//var fire = new Object("images/fire.png", 500, 200, 63.875, 127.75);
-		var fireCounter=0;
-		var fireResetCounter=0;
+
 function FireAnim(timestamp){
 	 setTimeout(function(){ //throttle requestAnimationFrame to 20fps
-	fire.animRow+=63.875;
-	fireCounter++;
-	if(fireCounter ==8){
-		fireResetCounter++;
-		fireCounter =0;
-		fire.animRow=0;
-		fire.animCol+=127.75;
-	}
-	if (fireResetCounter==4){
-		fireResetCounter=0;
-		fireCounter=0;
-		fire.animRow=0;
-		fire.animCol=0;
+	 for(i=0;i<fire.length;i++){
+		fire[i].animRow+=63.875;
+		fire[i].fireCounter++;
+		if(fire[i].fireCounter ==8){
+			fire[i].fireResetCounter++;
+			fire[i].fireCounter =0;
+			fire[i].animRow=0;
+			fire[i].animCol+=127.75;
+		}
+		if (fire[i].fireResetCounter==4){
+			fire[i].fireResetCounter=0;
+			fire[i].fireCounter=0;
+			fire[i].animRow=0;
+			fire[i].animCol=0
+		}
 	}
 	requestAnimationFrame(FireAnim)
 	 },1000/20)

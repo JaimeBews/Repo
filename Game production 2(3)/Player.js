@@ -141,13 +141,17 @@ function player(){
 		gameover= true;
 		lives = 3;
 	}
+	if (test.Y>=GroundBarrier.Y){
+		gameover = true
+	}
 		if(attacking&&test.isColl(enemy)&&level == 0){
 				enemy.X-=20000;
 				endDoor.Y = 272;
 		}
 	for (i=0;i<newEnemy.length;i++){
 		if(attacking&&test.isColl(newEnemy[i])){
-			 newEnemy.splice(i,1);
+			VFX_JumpLanded.play();
+			newEnemy.splice(i,1);
 		}
 	}
 }

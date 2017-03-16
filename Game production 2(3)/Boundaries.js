@@ -28,10 +28,11 @@ function Boundaries(){
 		PlatformStart-=playerSpeed;		
 		endDoor.X-=playerSpeed;
 		ExtraDoor.X-=playerSpeed;
-		fire.X-=playerSpeed;
+		RightScreen(fire);
 		enemy.X-=playerSpeed;
 		emerald.X-=0.5*playerSpeed;	
 		WASD.X-=playerSpeed;	
+		GroundBarrier.X-=playerSpeed;
 		RightScreen(newEnemy);
 		RightScreen(HealthPowerUp);
 		RightScreen(fakeGround);
@@ -63,11 +64,11 @@ function Boundaries(){
 		PlatformStart+=playerSpeed;
 		endDoor.X+=playerSpeed;
 		ExtraDoor.X+=playerSpeed;
-		fire.X+=playerSpeed;
+	LeftScreen(fire);
 		enemy.X+=playerSpeed;
 		WASD.X+=playerSpeed;
 		emerald.X+=0.5*playerSpeed;
-		
+		GroundBarrier.X+=playerSpeed;
 		LeftScreen(newEnemy);
 		LeftScreen(HealthPowerUp);
 		LeftScreen(fakeGround);
@@ -96,11 +97,11 @@ function Boundaries(){
 		PlatformStartY+=Math.abs(VelY);
 		endDoor.Y+=Math.abs(VelY);
 		ExtraDoor.Y+=Math.abs(VelY);
-		fire.Y+=Math.abs(VelY);
+		TopScreen(fire);
 		enemy.Y+=Math.abs(VelY);
 		WASD.Y+=Math.abs(VelY);
 		emerald.Y+=Math.abs(VelY);
-		
+		GroundBarrier.Y+=Math.abs(VelY);
 		TopScreen(newEnemy);
 		TopScreen(HealthPowerUp);
 		TopScreen(fakeGround);
@@ -131,11 +132,11 @@ function Boundaries(){
 			PlatformStartY-=Math.abs(VelY);		
 			endDoor.Y-=Math.abs(VelY);
 			ExtraDoor.Y-=Math.abs(VelY);
-			fire.Y-=Math.abs(VelY);
+			BotScreen(fire);
 			enemy.Y-=Math.abs(VelY);			
 			WASD.Y-=Math.abs(VelY);
 			emerald.Y-=Math.abs(VelY);
-			
+			GroundBarrier.Y-=Math.abs(VelY);
 			BotScreen(newEnemy);
 			BotScreen(HealthPowerUp);
 			BotScreen(fakeGround);

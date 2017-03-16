@@ -2,7 +2,7 @@
 	function tutorial(){
 		ClearAllArrays();
 		WASD.X=300;
-		
+		GroundBarrier.Y=display.height;
 		sound.play();
 		test.X=500
 		test.Y=372

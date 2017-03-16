@@ -40,9 +40,10 @@
 		VFX_Background2.loop=true;	
 	var VFX_Pong = new Audio("Sounds/Pong.wav");
 	var VFX_Sword = new Audio("Sounds/SwordSwing5.wav");
+		VFX_Sword.volume=0.3;
 	var VFX_Turret = new Audio("Sounds/Turret.wav");
-	VFX_Turret.volume=0.3;
-	var VFX_JumpLanded = new Audio("Sounds/JumpLanded.wav");
+		VFX_Turret.volume=0.3;
+	var VFX_JumpLanded = new Audio("Sounds/FallingOnGround.wav");
 	var VFX_Boss_Music = new Audio("Sounds/BossTheme1.mp3");
 		VFX_Boss_Music.volume = 0.1;
 		VFX_Boss_Music.loop=true;	
@@ -80,12 +81,8 @@
 
 		var BossBattle = false;
 		//var currentlevel=0; later use
+		var fire = new Array();
 		
-		var fire = new Object("images/fire.png", 500, 200, 65, 120);
-		fire.animCol=0;
-		fire.animRow=0;
-		fire.animHeight=120;
-		fire.animWidth=65;	
 		var HealthPowerUp = new Array();
 		var ground = new Array();
 		var jumpwalls= new Array();	
@@ -93,7 +90,7 @@
 		var newEnemy = new Array();	
 		var Paddle = new Array();		
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
-		
+		var GroundBarrier = new Object("images/wasd.png",0,display.height,0,0);
 
 		var newEnemy = new Array();		
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
@@ -101,7 +98,7 @@
 		var Menu= new Object("images/main_menu.png",0,0,800,640);		
 		var WASD= new Object("images/wasd.png",300,220,150,100);		
 		var emerald = new Object("images/LevelTutorial/TutBackground.png", 0, 0, backgroundIncrement, 640);		
-		var test = new Object("images/spritePlayer.png", 500, 372, 100, 100);	
+		var test = new Object("images/sprite12.png", 500, 372, 100, 100);	
 		var enemy = new Object("images/test_sheet.png", 500, 0, 70, 50);
 
 		var Ball = new Object("images/grass_tile.png", -50000, display.height -100,20,20);
@@ -144,7 +141,9 @@
 					ctx.drawImage(emerald.Sprite, emerald.X, emerald.Y, emerald.W, emerald.H);
 				}
 				ctx.drawImage(WASD.Sprite, WASD.X, WASD.Y, WASD.W, WASD.H);
-				
+				for(i=0;i<fire.length;i++){
+					ctx.drawImage(fire[i].Sprite,fire[i].animRow,fire[i].animCol,fire[i].animWidth,fire[i].animHeight, fire[i].X, fire[i].Y, fire[i].W, fire[i].H);
+				}
 				for(i=0; i<bullet.length; i++){				
 					ctx.drawImage(bullet[i].Sprite, bullet[i].X, bullet[i].Y,bullet[i].W,bullet[i].H);	
 				}
@@ -176,7 +175,7 @@
 					ctx.drawImage(ground[i].Sprite, ground[i].X, ground[i].Y,ground[i].W,ground[i].H);			
 				}				
 				ctx.drawImage(test.Sprite,animRow,animCol,animWidth,animHeight, test.X, test.Y, test.W, test.H);
-				ctx.drawImage(fire.Sprite,fire.animRow,fire.animCol,fire.animWidth,fire.animHeight, fire.X, fire.Y, fire.W, fire.H);
+				
 				ctx.drawImage(enemy.Sprite,enemy.animRow,enemy.animCol,enemy.animWidth,enemy.animHeight, enemy.X, enemy.Y, enemy.W, enemy.H);
 				for(i=0;i<newEnemy.length;i++){
 				

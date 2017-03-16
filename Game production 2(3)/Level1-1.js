@@ -9,6 +9,7 @@
 	
 	function Level_two(){
 		ClearAllArrays();
+		GroundBarrier.Y=2000;
 		test.X=500
 		test.Y=372
 		enemy.X=8000;
