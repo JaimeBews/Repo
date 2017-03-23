@@ -1,5 +1,6 @@
 
 	function tutorial(){
+		var tutorialgrass="images/LevelTutorial/TutGrass.png"
 		ClearAllArrays();
 		WASD.X=300;
 		GroundBarrier.Y=display.height;
@@ -26,7 +27,7 @@
 			HealthPowerUp[i] = new Object("images/Asset/healthupgrade.png",500+50*i,300,50,50);
 		} */
 		for (i=0; i<250; i++ ){
-			ground[i] = new Object ("images/LevelTutorial/TutGrass.png", 100*i, display.height -100,100,100);
+			ground[i] = new Object (tutorialgrass, 100*i, display.height -100,100,100);
 		}
 		/*  	for (i=0;i<2;i++){
 			shooter[i] = new Object("images/test.png",500,300,100,100)
