@@ -63,7 +63,7 @@
 				VFX_Button.play();
 				if (mainmenu){
 					mainmenu = false;
-					tutorial();
+					Level3();
 				}
 			}
 		}		
@@ -154,9 +154,7 @@
 				ctx.drawImage(endDoor.Sprite, endDoor.X, endDoor.Y, endDoor.W, endDoor.H);
 				ctx.drawImage(ExtraDoor.Sprite, ExtraDoor.X, ExtraDoor.Y, ExtraDoor.W, ExtraDoor.H);
 
-				for(i=0; i<fakeGround.length; i++){	
-					ctx.drawImage(fakeGround[i].Sprite, fakeGround[i].X, fakeGround[i].Y,fakeGround[i].W,fakeGround[i].H);			
-				}
+				
 				for(i=0;i<jumpwalls.length;i++){
 					ctx.drawImage(jumpwalls[i].Sprite, jumpwalls[i].X, jumpwalls[i].Y,jumpwalls[i].W,jumpwalls[i].H);	
 				}
@@ -202,6 +200,9 @@
 				}
 				for (i=0; i<lives;i++){
 					ctx.drawImage(Health[i].Sprite, Health[i].X*i, Health[i].Y,Health[i].W,Health[i].H);
+				}
+				for(i=0; i<fakeGround.length; i++){	
+					ctx.drawImage(fakeGround[i].Sprite, fakeGround[i].X, fakeGround[i].Y,fakeGround[i].W,fakeGround[i].H);			
 				}
 				
 			}

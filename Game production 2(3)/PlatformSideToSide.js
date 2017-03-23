@@ -7,6 +7,7 @@ function platFormX(){
 		
 	}else 
 		platformX[i].MaxArrayX = false;
+	
 	if (platformX[i].X < platformX[i].moveArray2X && platformX[i].MaxArrayX == false){
 		platformX[i].X += platformX[i].platformSpeed; //move speed right
 	}else 
