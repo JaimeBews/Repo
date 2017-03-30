@@ -5,14 +5,28 @@ function Collision(){
 	if(test.isColl(endDoor)&& level == 0){
 		level++
 		sound.pause();
-		Level_two();
+		Level2();
 	}
 	if((test.isColl(endDoor)||test.isColl(ExtraDoor))&& level == 1){
 		level++
 		VFX_Background2.pause();
+		StoneBossfight();
+	}
+	if(test.isColl(endDoor)&& level == 2){
+		level++
+		sound.pause();
+		Level3();
+	}
+	if(test.isColl(endDoor)&& level == 3){
+		level++
+		sound.pause();
+		Level4();
+	}
+	if(test.isColl(endDoor)&& level == 4){
+		level++
+		sound.pause();
 		Bossfight();
 	}
-
 	if (test.X <= 205&&!BossBattle){
 		test.X =205;
 	}
@@ -111,7 +125,9 @@ function Collision(){
 		}
 	}
 	for(i=0;i<ground.length; i++){
-		if(test.isCollTop(ground[i])){	
+		if(test.isCollTop(ground[i])){
+			
+			test.Y=ground[i].Y+ground[i].H;
 			test.Y+=4;
 			flagTop = true;
 		}
@@ -156,23 +172,26 @@ function Collision(){
 	}
 	for(i=0;i<jumpwalls.length; i++){
 		if(test.isCollRight(jumpwalls[i])){
-		flagRight= true;
-		onground=true;
-		test.Y+=3;
+			flagRight= true;
+			test.Y+=3;
+			onground=true;
+			onjumpwall= true;
+		
 		}		
 	}
 		for(i=0;i<jumpwalls.length; i++){
-		if(test.isCollLeft(jumpwalls[i])){
-		flagLeft= true;
-		onground=true;
-		test.Y+=3;
+			if(test.isCollLeft(jumpwalls[i])){
+			flagLeft= true;
+			test.Y+=3;
+			onground=true;
+			onjumpwall= true;
 		}		
 	}
 		for(i=0;i<jumpwalls.length; i++){
-		if(test.isCollBot(jumpwalls[i])){	
-			test.Y=jumpwalls[i].Y-test.H;
-			onground = true;
-		}
+			if(test.isCollBot(jumpwalls[i])){	
+				test.Y=jumpwalls[i].Y-test.H;
+				onground = true;	
+			}
 	}
 	for(i=0;i<jumpwalls.length; i++){
 		if(test.isCollTop(jumpwalls[i])){	

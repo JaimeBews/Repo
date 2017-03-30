@@ -11,7 +11,8 @@ function LeftScreen(temp){
 function TopScreen(temp){
 	for(i=0;i<temp.length;i++){
 		temp[i].Y+=Math.abs(VelY);
-	}	
+	}
+		
 }
 function BotScreen(temp){
 	for(i=0;i< temp.length;i++){
@@ -20,11 +21,11 @@ function BotScreen(temp){
 }
 
 function Boundaries(){
-	if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce)&&!BossBattle ){
+	if ((!flagRight)&&test.X>= display.width-test.W-205&&!attacking&& (D || onIce || onjumpwall)&&!BossBattle ){
 		if(onIce &&!D){
 			playerSpeed=IceSpeed;
 		}
-
+		
 		PlatformStart-=playerSpeed;		
 		endDoor.X-=playerSpeed;
 		ExtraDoor.X-=playerSpeed;
@@ -128,7 +129,11 @@ function Boundaries(){
 	
 	}
 		if (test.Y>440){
-			
+		
+		if(onjumpwall){
+			VelY = JumpWallSpeed;
+		}
+		
 			PlatformStartY-=Math.abs(VelY);		
 			endDoor.Y-=Math.abs(VelY);
 			ExtraDoor.Y-=Math.abs(VelY);

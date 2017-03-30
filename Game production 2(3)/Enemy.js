@@ -21,9 +21,12 @@ function Enemy(){
 		enemy.X-=E_Speed;
 	
 
-	if (Ball.isColl(test)&&hasnotbeenhit){
+	if (Ball.isCollTop(test)&&hasnotbeenhit){
 			wasHit();
-		}
+	}
+	if(test.isCollTop(StoneBoss)&&!attacking&&hasnotbeenhit){
+		wasHit();
+	}
 	for(i=0;i<spikes.length;i++){
 		if(test.isCollBot(spikes[i])&&hasnotbeenhit){
 			VFX_SpikeHit.volume = 0.5;			
@@ -56,9 +59,11 @@ function Enemy(){
 		if (fallingSpikes[i].falling ==true){
 			fallingSpikes[i].Y+=8;
 		}
-		if(test.isColl(fallingSpikes[i])&&hasnotbeenhit){//Need to make isColl correctly so it tests the whole object again
+		if(test.isCollTop(fallingSpikes[i])&&hasnotbeenhit){//Need to make isColl correctly so it tests the whole object again
 			wasHit();
-
+		}
+		if(fallingSpikes[i].Y>GroundBarrier.Y){
+			fallingSpikes.splice(i,1);
 		}
 	}
 	

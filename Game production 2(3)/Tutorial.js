@@ -43,8 +43,8 @@
 			platformX[i].MaxArrayX=true;
 			platformX[i].platformSpeed=1;
 		}
-		for(i=0;i<1;i++){
-			fallingSpikes[i] = new Object("images/LevelTutorial/TutSpike1.png",200,0,50,50);
+		for(i=0;i<0;i++){
+			fallingSpikes[i] = new Object("images/LevelTutorial/TutSpike1.png",200+100*i,0,50,50);
 			fallingSpikes[i].falling = false;
 		}
 		//for(i=0;i<1;i++){

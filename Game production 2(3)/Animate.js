@@ -46,7 +46,7 @@ function Animate(){ //needs a if(D&&A)
 		VFX_Sword.play();
 		recently_Attacked=true;
 		attacking = true;
-		setTimeout(AttackDelay,2000);
+		setTimeout(AttackDelay,1000);
 		
 	}
 		if(attacking&&faceLeft){

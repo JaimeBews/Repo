@@ -15,6 +15,7 @@ function Bossfight(){
 	emerald.X=0;
 	emerald.Y=0;
 	BossBattle = true;
+	PongBossBattle = true;//the level after this one needs to set this false
 		test.X=500
 		test.Y=372
 		for (i=0; i<2; i++ ){

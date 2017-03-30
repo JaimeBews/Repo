@@ -9,10 +9,15 @@
    <script language="javascript" type="text/javascript" src="Object.js"></script>
    <script language="javascript" type="text/javascript" src="Tutorial.js"></script>
    <script language="javascript" type="text/javascript" src="LevelOne.js"></script>
+   	<script language="javascript" type="text/javascript" src="easyLevel.js"></script>
 	<script language="javascript" type="text/javascript" src="Level1-1.js"></script>
+	<script language="javascript" type="text/javascript" src="Level2.js"></script>
 	<script language="javascript" type="text/javascript" src="TileBuilder.js"></script>
+	<script language="javascript" type="text/javascript" src="bernardslevel.js"></script>
+	<script language="javascript" type="text/javascript" src="jovoLevel.js"></script>
 	<script language="javascript" type="text/javascript" src="Presentation.js"></script>
    <script language="javascript" type="text/javascript" src="BossFight.js"></script>
+   <script language="javascript" type="text/javascript" src="StoneBossFight.js"></script>
    <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
    <script language="javascript" type="text/javascript" src="Enemy.js"></script>
    <script language="javascript" type="text/javascript" src="NewEnemy.js"></script>
@@ -63,7 +68,7 @@
 				VFX_Button.play();
 				if (mainmenu){
 					mainmenu = false;
-					Level3();
+					Level1();
 				}
 			}
 		}		
@@ -79,7 +84,8 @@
 		var backgroundIncrement = 2700;
 		var gameover = false;
 		var mainmenu= true;
-
+		var StoneBossBattle = false;
+		var PongBossBattle = false;
 		var BossBattle = false;
 		//var currentlevel=0; later use
 		var fire = new Array();
@@ -92,7 +98,7 @@
 		var Paddle = new Array();		
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
 		var GroundBarrier = new Object("images/wasd.png",0,display.height,0,0);
-
+		var onjumpwall= false;
 		var newEnemy = new Array();		
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
 
@@ -100,10 +106,11 @@
 		var WASD= new Object("images/wasd.png",300,220,150,100);		
 		var emerald = new Object("images/LevelTutorial/TutBackground.png", 0, 0, backgroundIncrement, 640);		
 		var test = new Object("images/sprite12.png", 500, 372, 100, 100);	
-		var enemy = new Object("images/test_sheet.png", 500, 0, 70, 50);
+		var enemy = new Object("images/test_sheet.png", -2000, 0, 70, 50);
 
 		var Ball = new Object("images/grass_tile.png", -50000, display.height -100,20,20);
-
+		var StoneBoss = new Object("images/L12Boss/L2Boss.png", 10000000 , display.height-100,300,600);
+		var shield = new Object("images/L12Boss/Shield.png", 10000000 , display.height-100,300,200);
 
 		StartAnimation();
 		enemy.animCol=0;
@@ -161,11 +168,13 @@
 				for(i=0; i<spikes.length; i++){	
 					ctx.drawImage(spikes[i].Sprite, spikes[i].X, spikes[i].Y,spikes[i].W,spikes[i].H);			
 				}
-				for(i=0; i<fallingSpikes.length; i++){	
-					ctx.drawImage(fallingSpikes[i].Sprite, fallingSpikes[i].X, fallingSpikes[i].Y,fallingSpikes[i].W,fallingSpikes[i].H);
-				}
+				
 
 				ctx.drawImage(Ball.Sprite, Ball.X, Ball.Y, Ball.W, Ball.H);
+				ctx.drawImage(StoneBoss.Sprite, StoneBoss.X, StoneBoss.Y, StoneBoss.W, StoneBoss.H);
+				if(!StoneBoss.Vulnerable){
+					ctx.drawImage(shield.Sprite, shield.X, shield.Y, shield.W, shield.H);
+				}
 				for(i=0; i<Paddle.length; i++){	
 					ctx.drawImage(Paddle[i].Sprite, Paddle[i].X, Paddle[i].Y,Paddle[i].W,Paddle[i].H);
 				}
@@ -198,6 +207,9 @@
 				for(i=0; i<iceBlock.length; i++){	
 					ctx.drawImage(iceBlock[i].Sprite, iceBlock[i].X, iceBlock[i].Y,iceBlock[i].W,iceBlock[i].H);			
 				}
+				for(i=0; i<fallingSpikes.length; i++){	
+					ctx.drawImage(fallingSpikes[i].Sprite, fallingSpikes[i].X, fallingSpikes[i].Y,fallingSpikes[i].W,fallingSpikes[i].H);
+				}
 				for (i=0; i<lives;i++){
 					ctx.drawImage(Health[i].Sprite, Health[i].X*i, Health[i].Y,Health[i].W,Health[i].H);
 				}
@@ -226,11 +238,14 @@
 				platFormX();
 				platformY();
 
-				if (BossBattle){
+				if (PongBossBattle){
 					BallFunc();
 					Boss();
 				}
-
+				if (StoneBossBattle){
+					FallingStones();
+					StoneBossfunc();
+				}
 			//	move();
 				updateBullet();
 				render();

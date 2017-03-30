@@ -6,6 +6,7 @@ var onIce = false;
 var flagRight= true;
 var flagLeft= true;
 var IceSpeed=2;
+var JumpWallSpeed = 3;
 var flying= false
 var VelY=0;
 var gravity = 0.5;
@@ -64,9 +65,11 @@ function player(){
 			}
 	onIce = false;
 	onground = false;
+	
 	flagTop=false;
 	flagRight= false;
 	flagLeft = false;
+	onjumpwall = false;
 	test.Y += VelY;
 
 	Collision();
