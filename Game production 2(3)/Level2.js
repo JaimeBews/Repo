@@ -1,5 +1,6 @@
 function Level2(){
-	ClearAllArrays();	
+	ClearAllArrays();
+	StoneBossBattle= false;	
 	var Level3Ground="images/LevelThree/L3Grass.png";
 	var Level3Platform="images/LevelThree/L3Platform.png";
 	var Level3Spike="images/LevelThree/L3Spike.png";
@@ -14,7 +15,7 @@ function Level2(){
 	TileBuilder(level3tile,400);	
 	test.X=0;
 	test.Y=500;
-	GroundBarrier.Y=display.height+1000;
+	GroundBarrier.Y=display.height+100000;
 	for(i=0; i<platform.length; i++){
 		platform[i].MaxArray =true;
 		platform[i].platformSpeed =1;

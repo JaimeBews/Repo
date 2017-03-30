@@ -2,7 +2,7 @@
 function StoneBossfight(){
 	ClearAllArrays();
 	StoneBoss = new Object("images/L12Boss/L2Boss.png", 10 , 0,300,600);
-	StoneBoss.BossHealth = 10;
+	StoneBoss.BossHealth = 1;
 	shield = new Object("images/L12Boss/Shield.png", 10 , 0,300,600);
 	emerald.Sprite.src="images/L12Boss/BossBackground.png";
 	emerald.W = display.width;
@@ -14,7 +14,7 @@ function StoneBossfight(){
 	StoneBossBattle = true;
 	test.X=500
 	test.Y=372
-	GroundBarrier.Y=display.height;
+	GroundBarrier.Y=display.height+1000000;
 	for (i=0; i<40; i++ ){
 			ground[i] = new Object ("images/L12Boss/BossPlatform.png", 100*i, display.height -100,100,100);
 		}
@@ -38,6 +38,11 @@ function StoneBossfunc(){
 	if(StoneBoss.BossHealth==0){
 		StoneBossBattle=false;
 		StoneBoss.X=-5000;
+		shield.X=-5000;
+		endDoor.X=display.width-100;
+		 for(i=0;i<3;i++){
+			HealthPowerUp[i] = new Object("images/Asset/healthupgrade.png",0+100*i,300,50,50);
+		} 
 	}
 	
 	if(test.isColl(StoneBoss)&&attacking&&!bossInvincibility){
@@ -51,5 +56,8 @@ function StoneBossfunc(){
 		shield.X= -500;
 	}else{
 		shield.X=10;
+	}
+	if(StoneBoss.BossHealth==0){
+		shield.X=-5000;
 	}
 }

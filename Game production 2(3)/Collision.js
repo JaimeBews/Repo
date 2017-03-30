@@ -15,6 +15,7 @@ function Collision(){
 	if(test.isColl(endDoor)&& level == 2){
 		level++
 		sound.pause();
+		//Level3();
 		Level3();
 	}
 	if(test.isColl(endDoor)&& level == 3){

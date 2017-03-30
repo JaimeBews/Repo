@@ -73,10 +73,7 @@ function player(){
 	test.Y += VelY;
 
 	Collision();
-	if(test.Y > 750){
-		gameover=true;
-		VelY = gravity;
-	}
+
 	if(flagTop){	
 		VelY=gravity;
 	}
@@ -145,6 +142,7 @@ function player(){
 		lives = 3;
 	}
 	if (test.Y>=GroundBarrier.Y){
+		console.log("lower than Gbarrier");
 		gameover = true
 	}
 		if(attacking&&test.isColl(enemy)&&level == 0){
