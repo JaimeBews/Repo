@@ -16,6 +16,7 @@ function Collision(){
 		level++
 		sound.pause();
 		//Level3();
+		BossBattle = false;
 		Level3();
 	}
 	if(test.isColl(endDoor)&& level == 3){
@@ -27,6 +28,9 @@ function Collision(){
 		level++
 		sound.pause();
 		Bossfight();
+	}
+	if(test.isColl(endDoor)&& level == 5){
+		victoryScreen();
 	}
 	if (test.X <= 205&&!BossBattle){
 		test.X =205;

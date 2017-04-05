@@ -11,6 +11,10 @@ function setSpike(img,img2){
 	currentSpike=img;
 	currentSpike2=img2;
 }
+function setTurret(img){
+	currentTurret=img;
+	
+}
 function Level3(){
 	ClearAllArrays();	
 	var Level3Ground="images/LevelThree/L3Grass.png";
@@ -19,7 +23,8 @@ function Level3(){
 	var Level3Spike2="images/LevelThree/L3Spike1.png";	
 	var Level3ClimbRight="images/LevelThree/L3ClimbRight.png";
 	var Level3ClimbLeft="images/LevelThree/L3ClimbLeft.png";
-
+	var Level3Turret="images/Asset/turret.png";
+	setTurret(Level3Turret);
 	setGround(Level3Ground, Level3ClimbRight, Level3ClimbLeft );
     setPlatform(Level3Platform);
 	setSpike(Level3Spike, Level3Spike2);
@@ -102,7 +107,7 @@ function TileBuilder(tiles,rowWidth){
 				fakeGround.push(temp = new Object (currentGround, Xindex*100, row*100,100,100));
 				break;
 			case 14:
-				shooter.push(temp = new Object ("images/Asset/Turret.png", Xindex*100, row*100,100,100));
+				shooter.push(temp = new Object (currentTurret, Xindex*100, row*100,100,100));
 				break;
 			case 15:
 				iceBlock.push(temp = new Object ("images/icetile3.png", Xindex*100, row*100,100,100));

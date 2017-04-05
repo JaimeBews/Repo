@@ -6,7 +6,8 @@ function Level4(){
 	var Level4Spike2="images/LevelOne/spikeFlip.png";	
 	var Level4ClimbRight="images/LevelThree/L3ClimbRight.png";
 	var Level4ClimbLeft="images/LevelThree/L3ClimbLeft.png";
-
+	var Level3Turret="images/Asset/turret.png";
+	setTurret(Level3Turret);
 	setGround(Level4Ground, Level4ClimbRight, Level4ClimbLeft );
     setPlatform(Level4Platform);
 	setSpike(Level4Spike, Level4Spike2);

@@ -7,7 +7,8 @@ function Level2(){
 	var Level3Spike2="images/LevelThree/L3Spike1.png";	
 	var Level3ClimbRight="images/LevelThree/L3ClimbRight.png";
 	var Level3ClimbLeft="images/LevelThree/L3ClimbLeft.png";
-
+	var Level3Turret="images/Asset/turret.png";
+	setTurret(Level3Turret);
 	setGround(Level3Ground, Level3ClimbRight, Level3ClimbLeft );
     setPlatform(Level3Platform);
 	setSpike(Level3Spike, Level3Spike2);

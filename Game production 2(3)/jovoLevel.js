@@ -1,12 +1,13 @@
 function Level5(){
 	ClearAllArrays();	
-	var Level5Ground="images/LevelOne/L1Dirt.png";
-	var Level5Platform="images/LevelOne/L1Platform.png";
-	var Level5Spike="images/LevelOne/spike.png";
-	var Level5Spike2="images/LevelOne/spikeFlip.png";	
-	var Level5ClimbRight="images/LevelThree/L3ClimbRight.png";
-	var Level5ClimbLeft="images/LevelThree/L3ClimbLeft.png";
-
+	var Level5Ground="images/LevelFour/L4Grass.png";
+	var Level5Platform="images/LevelFour/L4Platform.png";
+	var Level5Spike="images/LevelFour/spike.png";
+	var Level5Spike2="images/LevelFour/spikeFlip.png";	
+	var Level5ClimbRight="images/LevelFour/ClimableWallRight.png";
+	var Level5ClimbLeft="images/LevelFour/ClimableWallLeft.png";
+	var Level5Turret="images/LevelFour/L4turret.png";
+	setTurret(Level5Turret);
 	setGround(Level5Ground, Level5ClimbRight, Level5ClimbLeft );
     setPlatform(Level5Platform);
 	setSpike(Level5Spike, Level5Spike2);
@@ -36,7 +37,7 @@ function Level5(){
 			newEnemy[i].enemyCounter=0;
 			newEnemy[i].enemyResetCounter =0;
 		}
-		emerald.Sprite.src="images/LevelOne/L1Background.png";
+		emerald.Sprite.src="images/LevelFour/L4Background.png";
 		emerald.H=1512;
 		//emerald.W=2692;
 		emerald.X=0;
