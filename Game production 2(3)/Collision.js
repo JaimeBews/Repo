@@ -1,4 +1,5 @@
 var level = 0
+
 function Collision(){
 	powerUp();
 	if(CreditsBG.Y<-1200){

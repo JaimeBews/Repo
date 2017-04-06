@@ -15,13 +15,14 @@ function StoneBossfight(){
 	StoneBossBattle = true;
 	test.X=500
 	test.Y=372
-	GroundBarrier.Y=display.height+1000000;
+	GroundBarrier.Y=display.height+100;
 	for (i=0; i<40; i++ ){
 			ground[i] = new Object ("images/L12Boss/BossPlatform.png", 100*i, display.height -100,100,100);
 		}
 
 }
 function FallingStones(){
+	
 	if (fallingSpikes.length<5&&!delayingStones){
 		fallingSpikes.push(new Object("images/L12Boss/ThrowableObject.png",Math.floor(Math.random()*display.width),0,50,50));
 		for(i=0;i<fallingSpikes.length;i++){

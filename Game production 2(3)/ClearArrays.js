@@ -15,6 +15,9 @@ function ClearAllArrays(){
 	ExtraDoor.X=33333;
 	WASD.X=-33332;
 	fire.length=0;
-	
+	StoneBoss.X=-10000;
+	shield.X=-10000;
+	Paddle.length = 0;
+	Ball.X=-100000;
 	//newEnemy = 0;
 }//we never deleted the objects !!!!!!!! memory leak

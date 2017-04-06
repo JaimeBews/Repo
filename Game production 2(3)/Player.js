@@ -139,6 +139,7 @@ function player(){
 	}	
 	if (lives== 0){
 		gameover= true;
+		
 		lives = 3;
 	}
 	if (test.Y>=GroundBarrier.Y){

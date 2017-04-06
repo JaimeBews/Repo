@@ -32,6 +32,7 @@
 	<canvas id="screen" width=800 height = 640></canvas>
 
 	<script>
+
 	var VFX_Button = new Audio("Sounds/ButtonClick.wav");
 	var VFX_SpikeHit = new Audio("Sounds/GettingHit2.mp3");
 	var VFX_NormalHit = new Audio ("Sounds/GettingHit.wav");
@@ -71,6 +72,17 @@
 					Level1();
 				}
 			}
+			if(gameover){
+				if(p2rectCheck(canvasMouseX,canvasMouseY,RestartButton.X,RestartButton.Y,RestartButton.W,RestartButton.H)==0){
+			
+				}
+				if(p2rectCheck(canvasMouseX,canvasMouseY,MainMenuButton.X,MainMenuButton.Y,MainMenuButton.W,MainMenuButton.H)==0){
+					level=0;
+					lives =4;
+					gameover = false;
+					mainmenu= true;
+				}
+			}
 		}		
 		function p2rectCheck (canvasMouseX, canvasMouseY, ButtonX, ButtonY, ButtonW, ButtonH)
 		{
@@ -79,8 +91,10 @@
 			return Math.sqrt( (canvasMouseX-cx)*(canvasMouseX-cx) + (canvasMouseY-cy)*(canvasMouseY-cy) );
 		}
 		
-		
+		var RestartButton = new Object("images/L12Boss/Shield.png",display.width/2-80,display.height/2-30,300,200);
+		var MainMenuButton = new Object("images/L12Boss/Shield.png", 400 , display.height-100,300,200);
 		var StartButton = new Object("images/start.png",display.width/2-80,display.height/2-30,150,100);	
+		
 		var backgroundIncrement = 2700;
 		var gameover = false;
 		var mainmenu= true;
@@ -141,9 +155,12 @@
 			ctx.drawImage(StartButton.Sprite, StartButton.X, StartButton.Y, StartButton.W, StartButton.H);
 			}
 			else if(gameover){
+				ctx.clearRect(0,0,display.width, display.height);
 				ctx.drawImage(GameOver.Sprite, GameOver.X, GameOver.Y, GameOver.W, GameOver.H);
+				ctx.drawImage(MainMenuButton.Sprite, MainMenuButton.X, MainMenuButton.Y, MainMenuButton.W, MainMenuButton.H);
+				ctx.drawImage(RestartButton.Sprite, RestartButton.X, RestartButton.Y, RestartButton.W, RestartButton.H);
 			}else if(CreditsScreen){	
-				if (counterAlpha<100)	{	
+				if (counterAlpha<100){	
 					counterAlpha++;
 					ctx.globalAlpha = counterAlpha/100;
 				}
@@ -233,7 +250,7 @@
 				}
 			}
 		}
-		
+
 		
 		function Main(){
 		if(mainmenu){
@@ -242,7 +259,17 @@
 			
 			render();
 			setTimeout(Main,1000/60);
-
+			}else if(gameover){
+			PongBossBattle= false;
+			
+			sound.pause();
+			VFX_Background2.pause();
+			VFX_Background3.pause();
+			VFX_Boss_Music.pause();
+			StoneBossBattle = false;
+			VFX_MainMenu.play();			
+			render();
+			setTimeout(Main,1000/60);
 			}else{
 				player();				
 				Enemy();
