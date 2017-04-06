@@ -1,5 +1,6 @@
 function Level4(){
-	ClearAllArrays();	
+	ClearAllArrays();
+	sound.pause();	
 	var Level4Ground="images/LevelOne/L1Dirt.png";
 	var Level4Platform="images/LevelOne/L1Platform.png";
 	var Level4Spike="images/LevelOne/spike.png";

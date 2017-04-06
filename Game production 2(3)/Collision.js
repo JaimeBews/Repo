@@ -1,7 +1,12 @@
 var level = 0
 function Collision(){
 	powerUp();
-		
+	if(CreditsBG.Y<-1200){
+		CreditsBG.Y=800;
+		mainmenu=true
+		CreditsScreen = false;
+		level=0;
+	}		
 	if(test.isColl(endDoor)&& level == 0){
 		level++
 		sound.pause();
@@ -30,7 +35,7 @@ function Collision(){
 		Bossfight();
 	}
 	if(test.isColl(endDoor)&& level == 5){
-		victoryScreen();
+		Credits();
 	}
 	if (test.X <= 205&&!BossBattle){
 		test.X =205;

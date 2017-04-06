@@ -18,6 +18,7 @@
 	<script language="javascript" type="text/javascript" src="Presentation.js"></script>
    <script language="javascript" type="text/javascript" src="BossFight.js"></script>
    <script language="javascript" type="text/javascript" src="StoneBossFight.js"></script>
+   <script language="javascript" type="text/javascript" src="GameWon.js"></script>
    <script language="javascript" type="text/javascript" src="PlatformSideToSide.js"></script>
    <script language="javascript" type="text/javascript" src="Enemy.js"></script>
    <script language="javascript" type="text/javascript" src="NewEnemy.js"></script>
@@ -42,8 +43,8 @@
 		VFX_Background2.volume = 0.1;
 		VFX_Background2.loop=true;	
 	var VFX_Background3 = new Audio("Sounds/BackgroundMusic3.mp3");
-		VFX_Background2.volume = 0.1;
-		VFX_Background2.loop=true;	
+		VFX_Background3.volume = 0.1;
+		VFX_Background3.loop=true;	
 	var VFX_Pong = new Audio("Sounds/Pong.wav");
 	var VFX_Sword = new Audio("Sounds/SwordSwing5.wav");
 		VFX_Sword.volume=0.3;
@@ -61,12 +62,11 @@
 		function mouseClick(e){
 			var canvasMouseX = e.clientX - (display.offsetLeft - window.pageXOffset);
 			var canvasMouseY = e.clientY - (display.offsetTop - window.pageYOffset);
-			
-			if(p2rectCheck(canvasMouseX,canvasMouseY,StartButton.X,StartButton.Y,StartButton.W,StartButton.H)==0){
-				VFX_MainMenu.pause();
-				VFX_Button.volume = 0.5;			
-				VFX_Button.play();
-				if (mainmenu){
+			if (mainmenu){
+				if(p2rectCheck(canvasMouseX,canvasMouseY,StartButton.X,StartButton.Y,StartButton.W,StartButton.H)==0){
+					VFX_MainMenu.pause();
+					VFX_Button.volume = 0.5;			
+					VFX_Button.play();				
 					mainmenu = false;
 					Level1();
 				}
@@ -99,8 +99,12 @@
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
 		var GroundBarrier = new Object("images/wasd.png",0,display.height,0,0);
 		var onjumpwall= false;
-		var newEnemy = new Array();		
+		var newEnemy = new Array();	
+		
 		var GameOver = new Object("images/gameover.png",0,0,800,640);
+		
+		var BlackScreen = new Object("images/BlackScreen.png", 0, 0, display.width, display.height);	
+		var CreditsBG = new Object("images/Credits.png", 0, 800, display.width, display.height);
 
 		var Menu= new Object("images/main_menu.png",0,0,800,640);		
 		var WASD= new Object("images/wasd.png",300,220,150,100);		
@@ -129,8 +133,8 @@
 			Health[i] = new Object("images/heart.png", 50, 0, 50, 50);
 		}
 		
-
-	
+	var CreditsScreen=false;
+	var counterAlpha=0;
 		function render(){
 		if(mainmenu){	
 			ctx.drawImage(Menu.Sprite, Menu.X, Menu.Y, Menu.W, Menu.H);
@@ -138,6 +142,16 @@
 			}
 			else if(gameover){
 				ctx.drawImage(GameOver.Sprite, GameOver.X, GameOver.Y, GameOver.W, GameOver.H);
+			}else if(CreditsScreen){	
+				if (counterAlpha<100)	{	
+					counterAlpha++;
+					ctx.globalAlpha = counterAlpha/100;
+				}
+				ctx.clearRect(0,0,display.width, display.height);
+				ctx.drawImage(BlackScreen.Sprite, BlackScreen.X, BlackScreen.Y, BlackScreen.W, BlackScreen.H);
+				CreditsBG.Y--;
+				ctx.drawImage(CreditsBG.Sprite, CreditsBG.X, CreditsBG.Y, CreditsBG.W, CreditsBG.H);
+				
 			
 			}else{
 				ctx.clearRect(0,0,display.width, display.height);	
@@ -210,13 +224,13 @@
 				for(i=0; i<fallingSpikes.length; i++){	
 					ctx.drawImage(fallingSpikes[i].Sprite, fallingSpikes[i].X, fallingSpikes[i].Y,fallingSpikes[i].W,fallingSpikes[i].H);
 				}
-				for (i=0; i<lives;i++){
-					ctx.drawImage(Health[i].Sprite, Health[i].X*i, Health[i].Y,Health[i].W,Health[i].H);
-				}
+				
 				for(i=0; i<fakeGround.length; i++){	
 					ctx.drawImage(fakeGround[i].Sprite, fakeGround[i].X, fakeGround[i].Y,fakeGround[i].W,fakeGround[i].H);			
 				}
-				
+				for (i=0; i<lives;i++){
+					ctx.drawImage(Health[i].Sprite, Health[i].X*i, Health[i].Y,Health[i].W,Health[i].H);
+				}
 			}
 		}
 		

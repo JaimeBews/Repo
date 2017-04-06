@@ -33,7 +33,11 @@ function Boss(){
 	if(bossHealth ==0){
 		Paddle.length=0
 		Ball.X=-22222;
-// Powerup or victory screen go here
+		endDoor.X= display.width/2-100;
+		endDoor.Y=450;
+		endDoor.W= 100
+		endDoor.H=100;
+
 }
 	for (i=0; i<Paddle.length; i++ ){
 		for(j=0; j<PaddleSpeed;j++){

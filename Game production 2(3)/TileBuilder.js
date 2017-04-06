@@ -17,6 +17,8 @@ function setTurret(img){
 }
 function Level3(){
 	ClearAllArrays();	
+	VFX_Boss_Music.pause();
+	sound.play();
 	var Level3Ground="images/LevelThree/L3Grass.png";
 	var Level3Platform="images/LevelThree/L3Platform.png";
 	var Level3Spike="images/LevelThree/L3Spike.png";

@@ -10,7 +10,7 @@ var JumpWallSpeed = 3;
 var flying= false
 var VelY=0;
 var gravity = 0.5;
-var lives=12;
+var lives=4;
 function player(){
 
 	test.isCollRight= function(obj){
@@ -78,7 +78,7 @@ function player(){
 		VelY=gravity;
 	}
 		
-	if(onground){		
+	if(onground||CreditsScreen){		
 		VelY = 0;
 	}else{
 		VelY += gravity;

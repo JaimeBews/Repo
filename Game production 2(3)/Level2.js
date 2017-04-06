@@ -1,4 +1,6 @@
 function Level2(){
+	VFX_Background2.pause();
+	VFX_Background3.play();
 	ClearAllArrays();
 	StoneBossBattle= false;	
 	var Level3Ground="images/LevelThree/L3Grass.png";

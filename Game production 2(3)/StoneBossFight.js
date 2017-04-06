@@ -1,8 +1,9 @@
 
 function StoneBossfight(){
 	ClearAllArrays();
+	VFX_Background3.pause();
 	StoneBoss = new Object("images/L12Boss/L2Boss.png", 10 , 0,300,600);
-	StoneBoss.BossHealth = 1;
+	StoneBoss.BossHealth = 10;
 	shield = new Object("images/L12Boss/Shield.png", 10 , 0,300,600);
 	emerald.Sprite.src="images/L12Boss/BossBackground.png";
 	emerald.W = display.width;
