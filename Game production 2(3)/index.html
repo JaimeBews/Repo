@@ -46,6 +46,9 @@
 	var VFX_Background3 = new Audio("Sounds/BackgroundMusic3.mp3");
 		VFX_Background3.volume = 0.1;
 		VFX_Background3.loop=true;	
+	var VFX_Background4 = new Audio("Sounds/BackgroundMusic4.mp3");
+		VFX_Background4.volume = 0.1;
+		VFX_Background4.loop=true;	
 	var VFX_Pong = new Audio("Sounds/Pong.wav");
 	var VFX_Sword = new Audio("Sounds/SwordSwing5.wav");
 		VFX_Sword.volume=0.3;
@@ -74,9 +77,31 @@
 			}
 			if(gameover){
 				if(p2rectCheck(canvasMouseX,canvasMouseY,RestartButton.X,RestartButton.Y,RestartButton.W,RestartButton.H)==0){
-			
+					VFX_Button.play();
+					VFX_MainMenu.pause();	
+					gameover = false;
+					if (level==0){
+						Level1();
+					}
+					if (level==1){
+						Level2();
+					}
+					if (level==2){
+						StoneBossfight();
+					}
+					if (level==3){
+						Level3();
+					}
+					if (level==4){
+						Level4();
+					}
+					if (level==5){
+						Bossfight();
+					}
+						
 				}
 				if(p2rectCheck(canvasMouseX,canvasMouseY,MainMenuButton.X,MainMenuButton.Y,MainMenuButton.W,MainMenuButton.H)==0){
+					VFX_Button.play();
 					level=0;
 					lives =4;
 					gameover = false;
@@ -91,8 +116,8 @@
 			return Math.sqrt( (canvasMouseX-cx)*(canvasMouseX-cx) + (canvasMouseY-cy)*(canvasMouseY-cy) );
 		}
 		
-		var RestartButton = new Object("images/L12Boss/Shield.png",display.width/2-80,display.height/2-30,300,200);
-		var MainMenuButton = new Object("images/L12Boss/Shield.png", 400 , display.height-100,300,200);
+		var RestartButton = new Object("images/Restart.png",display.width/2-80,465,150,30);
+		var MainMenuButton = new Object("images/Return.png", display.width/2-80,525,150,30);
 		var StartButton = new Object("images/start.png",display.width/2-80,display.height/2-30,150,100);	
 		
 		var backgroundIncrement = 2700;
@@ -260,11 +285,11 @@
 			render();
 			setTimeout(Main,1000/60);
 			}else if(gameover){
-			PongBossBattle= false;
-			
+			PongBossBattle= false;			
 			sound.pause();
 			VFX_Background2.pause();
 			VFX_Background3.pause();
+			VFX_Background4.pause();
 			VFX_Boss_Music.pause();
 			StoneBossBattle = false;
 			VFX_MainMenu.play();			
