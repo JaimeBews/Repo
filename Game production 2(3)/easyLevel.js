@@ -17,6 +17,8 @@ function Level1(){
 	TileBuilder(level3tile,400);	
 	test.X=200;
 	test.Y=500;
+	WASD.X=500;
+	WASD.Y=1000;
 	GroundBarrier.Y=display.height+1000;
 	for(i=0; i<platform.length; i++){
 		platform[i].MaxArray =true;

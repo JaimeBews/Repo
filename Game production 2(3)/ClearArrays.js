@@ -12,7 +12,7 @@ function ClearAllArrays(){
 	newEnemy.length = 0;
 	HealthPowerUp.length = 0;
 	endDoor.X=33333;
-	ExtraDoor.X=33333;
+	ExtraDoor.X=3333333;
 	WASD.X=-33332;
 	fire.length=0;
 	StoneBoss.X=-10000;
