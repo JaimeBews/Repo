@@ -14,6 +14,10 @@ function Bossfight(){
 	VFX_Boss_Music.play();
 	emerald.X=0;
 	emerald.Y=0;
+	ballSpeed=1;
+	ballDx=1;
+	ballDy=1;
+	bossHealth = 10;
 	BossBattle = true;
 	PongBossBattle = true;//the level after this one needs to set this false
 		test.X=500
