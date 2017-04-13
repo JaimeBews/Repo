@@ -5,8 +5,8 @@ function Level2(){
 	StoneBossBattle= false;	
 	var Level5Ground="images/LevelTwoTwo/L12Grass.png";
 	var Level5Platform="images/LevelTwoTwo/L12Platform.png";
-	var Level5Spike="images/LevelTwoTwo/spike.png";
-	var Level5Spike2="images/LevelTwoTwo/spikeFlip.png";	
+	var Level5Spike="images/spike.png";
+	var Level5Spike2="images/spikeFlip.png";	
 	var Level5ClimbRight="images/LevelTwoTwo/ClimableWallRight.png";
 	var Level5ClimbLeft="images/LevelTwoTwo/ClimableWallLeft.png";
 	var Level5Turret="images/LevelFour/L4turret.png";

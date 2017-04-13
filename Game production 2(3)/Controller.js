@@ -12,13 +12,13 @@ function keyDown(e){
 	if (String.fromCharCode(e.keyCode)=="D"){
 		D= true;	
 	}		
-	if (String.fromCharCode(e.keyCode)== "T"){
+	if (String.fromCharCode(e.keyCode)== "F"){
 		T = true;				
 	}
 	if (String.fromCharCode(e.keyCode)=="G"){
 		G= true;
 	}
-	if (String.fromCharCode(e.keyCode)=="F"){
+	if (String.fromCharCode(e.keyCode)=="T"){
 		F= true;
 	}
 	if (String.fromCharCode(e.keyCode)=="H"){
@@ -38,13 +38,13 @@ function keyUp(e){
 	if (String.fromCharCode(e.keyCode)== "D"){
 		D = false;
 	}	
-	if (String.fromCharCode(e.keyCode)== "T"){
+	if (String.fromCharCode(e.keyCode)== "F"){
 		T = false;
 	}
 	if (String.fromCharCode(e.keyCode)=="G"){
 		G= false;
 	}
-	if (String.fromCharCode(e.keyCode)=="F"){
+	if (String.fromCharCode(e.keyCode)=="T"){
 		F= false;
 	}
 	if (String.fromCharCode(e.keyCode)=="H"){

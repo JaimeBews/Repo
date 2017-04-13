@@ -9,10 +9,12 @@ var animWidth=50;
 var counter =0;
 var recently_Attacked = false;
 var attacking = false;
-
+var facingLeftWhenAttacked = false;
+var facingRightWhenAttacked = false;
 function Animate(){ //needs a if(D&&A)
 
 	if(D&&!attacking&&!A){
+	
 		animCol= 75;
 		delayR++;
 		animWidth= 50;
@@ -28,7 +30,7 @@ function Animate(){ //needs a if(D&&A)
 	}	
 
 	 if(A&&!attacking&&!D){
-
+	
 		animCol= 0;
 		delayL++;
 		animWidth= 50;
@@ -44,13 +46,36 @@ function Animate(){ //needs a if(D&&A)
 	}
 	if(T&&onground&&!recently_Attacked){
 		VFX_Sword.play();
+		facingLeftWhenAttacked=false;
+		facingRightWhenAttacked=false;
 		recently_Attacked=true;
 		attacking = true;
 		setTimeout(AttackDelay,1000);
-		
+		if(faceLeft)
+			facingLeftWhenAttacked = true;
+		else
+			facingRightWhenAttacked = true
 	}
-		if(attacking&&faceLeft){
-			
+	if(!attacking&&!A&&!D){
+		
+		if(faceLeft){
+			console.log("left");
+			animCol= 0;
+			animRow=0;
+			animWidth= 50;
+		}
+		if(faceRight){
+			animCol= 75;
+			animRow=0;
+			animWidth= 50;
+		}
+	}
+	
+		if(attacking&&facingLeftWhenAttacked){
+			if (delay == 0){
+				animCol= 0;
+				animRow=0;
+			}
 		
 			animCol= 150;
 			animHeight=75;
@@ -59,22 +84,22 @@ function Animate(){ //needs a if(D&&A)
 			if(delay > 5){
 				animWidth=75;
 				counter++;
-				animRow= 20;	//225
+				animRow= 225;	//225
 			}
 			if(delay > 10){
 				animWidth=75;
 				counter++;
-				animRow= 75;	//150
+				animRow= 150;	//150
 			}
 			if(delay > 15){
 				animWidth=75;
 				counter++;
-				animRow= 150;	//75
+				animRow= 75;	//75
 			}
 			if(delay >= 20){
 				animWidth=75;
 				counter++;
-				animRow= 225;	//20
+				animRow= 20;	//20
 				delay = 0;
 				animCol= 0;
 				animWidth= 50;
@@ -83,7 +108,11 @@ function Animate(){ //needs a if(D&&A)
 			}
 			
 		}
-			if(attacking&&faceRight){
+			if(attacking&&facingRightWhenAttacked){
+				if (delay ==0){
+					animCol= 75;
+					animRow=0;
+				}
 			animCol= 225;
 			animHeight=75;
 			delay++;
