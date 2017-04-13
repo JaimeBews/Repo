@@ -152,7 +152,7 @@ function player(){
 		}
 	for (i=0;i<newEnemy.length;i++){
 		if(attacking&&test.isColl(newEnemy[i])){
-			VFX_JumpLanded.play();
+			VFX_EnemyDeath.play();
 			newEnemy.splice(i,1);
 		}
 	}

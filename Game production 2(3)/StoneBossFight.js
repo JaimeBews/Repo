@@ -48,7 +48,7 @@ function StoneBossfunc(){
 	}
 	
 	if(test.isColl(StoneBoss)&&attacking&&!bossInvincibility){
-			VFX_Pong.play();
+			VFX_BossHit.play();
 			StoneBoss.BossHealth--;
 			StoneBoss.Vulnerable = false;
 			bossInvincibility = true

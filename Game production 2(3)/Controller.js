@@ -1,6 +1,6 @@
 var W, S, A, D, T,F,G,H;
 function keyDown(e){
-	if (String.fromCharCode(e.keyCode)== "W"){
+	if (String.fromCharCode(e.keyCode)== " "){
 		W = true;
 	}
 	if (String.fromCharCode(e.keyCode)=="S"){
@@ -12,7 +12,7 @@ function keyDown(e){
 	if (String.fromCharCode(e.keyCode)=="D"){
 		D= true;	
 	}		
-	if (String.fromCharCode(e.keyCode)== "K"){
+	if (String.fromCharCode(e.keyCode)== "T"){
 		T = true;				
 	}
 	if (String.fromCharCode(e.keyCode)=="G"){
@@ -26,7 +26,7 @@ function keyDown(e){
 	}				
 }
 function keyUp(e){
-	if (String.fromCharCode(e.keyCode)== "W"){
+	if (String.fromCharCode(e.keyCode)== " "){
 		W = false;
 	}
 	if (String.fromCharCode(e.keyCode)== "S"){
@@ -38,7 +38,7 @@ function keyUp(e){
 	if (String.fromCharCode(e.keyCode)== "D"){
 		D = false;
 	}	
-	if (String.fromCharCode(e.keyCode)== "K"){
+	if (String.fromCharCode(e.keyCode)== "T"){
 		T = false;
 	}
 	if (String.fromCharCode(e.keyCode)=="G"){

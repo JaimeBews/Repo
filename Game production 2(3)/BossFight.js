@@ -11,6 +11,7 @@ function Bossfight(){
 	emerald.Sprite.src="images/BossArea/BossBackground.png";
 	emerald.W = display.width;
 	emerald.H = display.height;
+	VFX_Background4.pause();
 	VFX_Boss_Music.play();
 	emerald.X=0;
 	emerald.Y=0;

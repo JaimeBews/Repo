@@ -32,7 +32,9 @@
 	<canvas id="screen" width=800 height = 640></canvas>
 
 	<script>
-
+	var VFX_BossHit = new Audio("Sounds/Sounds3/BossHit.wav");
+	var VFX_HealthPickup = new Audio("Sounds/Sounds3/HealthPickup.wav");
+	var VFX_EnemyDeath = new Audio ("Sounds/Sounds3/EnemyDeath2.wav");
 	var VFX_Button = new Audio("Sounds/ButtonClick.wav");
 	var VFX_SpikeHit = new Audio("Sounds/GettingHit2.mp3");
 	var VFX_NormalHit = new Audio ("Sounds/GettingHit.wav");
@@ -40,15 +42,17 @@
 	var sound = new Audio("Sounds/BackgroundMusic1.mp3");
 		sound.volume = 0.1;
 		sound.loop=true;
-	var VFX_Background2 = new Audio("Sounds/BackgroundMusic2.mp3");
-		VFX_Background2.volume = 0.1;
-		VFX_Background2.loop=true;	
+
 	var VFX_Background3 = new Audio("Sounds/BackgroundMusic3.mp3");
 		VFX_Background3.volume = 0.1;
 		VFX_Background3.loop=true;	
 	var VFX_Background4 = new Audio("Sounds/BackgroundMusic4.mp3");
 		VFX_Background4.volume = 0.1;
 		VFX_Background4.loop=true;	
+	var VFX_Background2 = new Audio("Sounds/BackgroundMusic5.mp3");
+		VFX_Background2.volume = 0.1;
+		VFX_Background2.loop=true;	
+	
 	var VFX_Pong = new Audio("Sounds/Pong.wav");
 	var VFX_Sword = new Audio("Sounds/SwordSwing5.wav");
 		VFX_Sword.volume=0.3;
@@ -208,9 +212,7 @@
 				for(i=0;i<fire.length;i++){
 					ctx.drawImage(fire[i].Sprite,fire[i].animRow,fire[i].animCol,fire[i].animWidth,fire[i].animHeight, fire[i].X, fire[i].Y, fire[i].W, fire[i].H);
 				}
-				for(i=0; i<bullet.length; i++){				
-					ctx.drawImage(bullet[i].Sprite, bullet[i].X, bullet[i].Y,bullet[i].W,bullet[i].H);	
-				}
+
 				for (i=0; i<shooter.length; i++){
 					ctx.drawImage(shooter[i].Sprite, shooter[i].X, shooter[i].Y,shooter[i].W,shooter[i].H);
 				}
@@ -269,6 +271,9 @@
 				
 				for(i=0; i<fakeGround.length; i++){	
 					ctx.drawImage(fakeGround[i].Sprite, fakeGround[i].X, fakeGround[i].Y,fakeGround[i].W,fakeGround[i].H);			
+				}
+				for(i=0; i<bullet.length; i++){				
+					ctx.drawImage(bullet[i].Sprite, bullet[i].X, bullet[i].Y,bullet[i].W,bullet[i].H);	
 				}
 				for (i=0; i<lives;i++){
 					ctx.drawImage(Health[i].Sprite, Health[i].X*i, Health[i].Y,Health[i].W,Health[i].H);
