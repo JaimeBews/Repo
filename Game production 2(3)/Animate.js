@@ -12,9 +12,7 @@ var attacking = false;
 var facingLeftWhenAttacked = false;
 var facingRightWhenAttacked = false;
 function Animate(){ //needs a if(D&&A)
-
-	if(D&&!attacking&&!A){
-	
+	if(D&&!attacking&&!A){	
 		animCol= 75;
 		delayR++;
 		animWidth= 50;
@@ -76,7 +74,7 @@ function Animate(){ //needs a if(D&&A)
 				animCol= 0;
 				animRow=0;
 			}
-		
+			animRow=20;
 			animCol= 150;
 			animHeight=75;
 			delay++;
@@ -84,22 +82,22 @@ function Animate(){ //needs a if(D&&A)
 			if(delay > 5){
 				animWidth=75;
 				counter++;
-				animRow= 225;	//225
+				animRow= 75;	//150
 			}
 			if(delay > 10){
 				animWidth=75;
 				counter++;
-				animRow= 150;	//150
+				animRow= 150;
 			}
 			if(delay > 15){
 				animWidth=75;
 				counter++;
-				animRow= 75;	//75
+				animRow= 226;	//75
 			}
 			if(delay >= 20){
 				animWidth=75;
 				counter++;
-				animRow= 20;	//20
+				animRow= 226;	//20
 				delay = 0;
 				animCol= 0;
 				animWidth= 50;
